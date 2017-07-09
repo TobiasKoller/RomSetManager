@@ -2,7 +2,10 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
+/RomSetManager/bin/Debug
 /RomSetManager/obj/Debug
+/RomSetManager/Configuration/bin/Debug
+/RomSetManager/Configuration/obj/Debug
 *.suo
 *.suo
 /.vs/RomSetManager/v15/.suo
