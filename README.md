@@ -1,0 +1,2 @@
+# RomSetManager
+Filters your Romset
