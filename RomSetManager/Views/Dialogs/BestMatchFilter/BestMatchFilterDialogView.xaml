@@ -1,0 +1,54 @@
+﻿<controls:MetroWindow x:Class="RomSetManager.Views.Dialogs.BestMatchFilter.BestMatchFilterDialogView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RomSetManager.Views.Dialogs"
+             xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:cal="http://www.caliburnproject.org"
+             mc:Ignorable="d" 
+             
+             Width="500" Height="400"
+             d:DesignHeight="300" d:DesignWidth="300"
+                      BorderThickness="0" 
+                      GlowBrush="Black"
+                      ResizeMode="CanResizeWithGrip"
+                      WindowTransitionsEnabled="False"
+                      WindowStartupLocation="CenterScreen">
+    
+    <controls:MetroWindow.Resources>
+        <Style x:Key="UpDownBtn" TargetType="Button">
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Width" Value="15"></Setter>
+        </Style>
+    </controls:MetroWindow.Resources>
+   
+    <StackPanel Orientation="Horizontal">
+       <GroupBox Header="Langauges">
+           <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <DataGrid x:Name="LanguageGrid" ItemsSource="{Binding Languages}" AutoGenerateColumns="False" Grid.Column="0" cal:Message.Attach="[Event SelectionChanged] = [Action SelectedLanguageChanged($source)]">
+                   <DataGrid.Columns>
+                       <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
+                       <DataGridTextColumn Header="Type" Binding="{Binding Value}"></DataGridTextColumn>
+                       <DataGridTextColumn Header="Position" Binding="{Binding Position}"></DataGridTextColumn>
+                   </DataGrid.Columns>
+               </DataGrid>
+               <StackPanel Grid.Column="1" Orientation="Vertical">
+                    <Button x:Name="LanguageUp" Style="{StaticResource UpDownBtn}">
+                       <fa:FontAwesome Icon="ArrowUp"/>
+                    </Button>
+                    <Button x:Name="LanguageDown" Style="{StaticResource UpDownBtn}">
+                       <fa:FontAwesome Icon="ArrowDown" />
+                    </Button>
+                </StackPanel>
+            </Grid>
+           
+       </GroupBox>
+   </StackPanel>
+</controls:MetroWindow>

@@ -1,0 +1,7 @@
+D:\RomSetManager\Configuration\bin\Debug\Configuration.dll
+D:\RomSetManager\Configuration\bin\Debug\Configuration.pdb
+D:\RomSetManager\Configuration\obj\Debug\Configuration.csprojResolveAssemblyReference.cache
+D:\RomSetManager\Configuration\obj\Debug\Configuration.dll
+D:\RomSetManager\Configuration\obj\Debug\Configuration.pdb
+D:\RomSetManager\Configuration\bin\Debug\Model.dll
+D:\RomSetManager\Configuration\bin\Debug\Model.pdb

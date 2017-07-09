@@ -1,0 +1,62 @@
+﻿<Page x:Class="RomSetManager.Views.Main.MainView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RomSetManager.Views.Main"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      xmlns:cal="http://www.caliburnproject.org"
+      Title="MainView">
+
+    <Page.Resources>
+        <Style x:Key="TitleStyle" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+        </Style>
+        <Style x:Key="MenuButton" TargetType="Button">
+            <Setter Property="Margin" Value="5 0 0 0"></Setter>
+            <Setter Property="Width" Value="70"></Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <Button x:Name="OpenSettings" Style="{StaticResource MenuButton}"
+                    ToolTip="Settings">
+                <StackPanel>
+                    <fa:ImageAwesome Icon="Cogs" Width="25" />
+                    <TextBlock>Settings</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button x:Name="NavigateToBestMatchView" Style="{StaticResource MenuButton}"
+                    ToolTip="Use this to find the best Matched Roms filtered by the special chars [!],(U),(J)....">
+                <StackPanel>
+                    <fa:ImageAwesome Icon="Flag" Width="25" />
+                    <TextBlock>Best Match</TextBlock>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <Frame Grid.Row="1" Margin="5" cal:Message.Attach="[Event Loaded] = [Init($source)]" BorderBrush="LightGray" BorderThickness="1"></Frame>
+    </Grid>
+
+    <!--<StackPanel Margin="50">
+        
+        <Button Style="{StaticResource MenuButton}">
+            <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0">
+                <TextBlock Style="{StaticResource TitleStyle}">Settings</TextBlock>
+                <TextBlock>Setup this tool.</TextBlock>
+            </StackPanel>
+        </Button>
+        <Button Style="{StaticResource MenuButton}" x:Name="NavigateToBestMatchView">
+            <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0">
+                <TextBlock Style="{StaticResource TitleStyle}">Best Match</TextBlock>
+                <TextBlock>Will find the best match for each rom, filter by special title-elements like (U),[!],[h1C]...</TextBlock>
+            </StackPanel>
+        </Button>
+    </StackPanel>-->
+</Page>

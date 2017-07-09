@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RomSetManager", "RomSetManager\RomSetManager.csproj", "{FB120B09-AC01-4FBD-BC07-B700D6B707FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Configuration", "Configuration\Configuration.csproj", "{4C993A53-CAFE-4409-B96F-BB03F8609985}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{03532F22-E1C8-4BD7-9ACA-7A2551710D3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{FB120B09-AC01-4FBD-BC07-B700D6B707FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB120B09-AC01-4FBD-BC07-B700D6B707FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB120B09-AC01-4FBD-BC07-B700D6B707FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C993A53-CAFE-4409-B96F-BB03F8609985}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C993A53-CAFE-4409-B96F-BB03F8609985}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C993A53-CAFE-4409-B96F-BB03F8609985}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C993A53-CAFE-4409-B96F-BB03F8609985}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03532F22-E1C8-4BD7-9ACA-7A2551710D3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03532F22-E1C8-4BD7-9ACA-7A2551710D3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03532F22-E1C8-4BD7-9ACA-7A2551710D3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03532F22-E1C8-4BD7-9ACA-7A2551710D3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

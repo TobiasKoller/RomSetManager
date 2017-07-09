@@ -1,0 +1,4 @@
+D:\RomSetManager\Model\bin\Debug\Model.dll
+D:\RomSetManager\Model\bin\Debug\Model.pdb
+D:\RomSetManager\Model\obj\Debug\Model.dll
+D:\RomSetManager\Model\obj\Debug\Model.pdb

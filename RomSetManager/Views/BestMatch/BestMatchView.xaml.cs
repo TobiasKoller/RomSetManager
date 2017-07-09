@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace RomSetManager
+namespace RomSetManager.Views.BestMatch
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for BestMatchView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class BestMatchView : Page
     {
-        public MainWindow()
+        public BestMatchView()
         {
             InitializeComponent();
         }
