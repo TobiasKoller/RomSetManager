@@ -10,6 +10,7 @@ using Configuration;
 using Model;
 using RomSetManager.IoC;
 using RomSetManager.Navigation;
+using RomSetManager.Services;
 using RomSetManager.Strings;
 using IServiceProvider = RomSetManager.Services.IServiceProvider;
 
@@ -17,8 +18,9 @@ namespace RomSetManager.Views.BestMatch
 {
     public partial class BestMatchViewModel : ViewModelBase
     {
-        private ConfigurationReader _configurationReader;
-        public ObservableCollection<Language> FilterLanguages { get; set; }
+        public ObservableCollection<NamePart> FilterLanguages { get; set; }
+        public ObservableCollection<RomFile> RomFiles { get; set; }
+        private ConfigurationService _configurationService;
 
         private string _sourceDirectory, _destinationDirectory="";
 
@@ -43,13 +45,20 @@ namespace RomSetManager.Views.BestMatch
             IServiceProvider serviceProvider) : 
             base(name, container, eventAggregator, navigationServiceProvider, Constants.FRAME_MAIN, serviceProvider)
         {
-            FilterLanguages = new ObservableCollection<Language>();
+            FilterLanguages = new ObservableCollection<NamePart>();
+            RomFiles = new ObservableCollection<RomFile>();
+
+            _configurationService = ServiceProvider.ConfigurationService;
             Init();
         }
 
         private void Init()
         {
-            SourceDirectory = "C:\\temp";
+            var service = ServiceProvider.ConfigurationService;
+            var config = service.GetConfiguration();
+
+            SourceDirectory = config.BestMatch.RomSourceDirectory;
+            DestinationDirectory = config.BestMatch.RomDestinationDirectory;
         }
     }
 }

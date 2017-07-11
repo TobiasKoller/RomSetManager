@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="BestMatchReader.cs" />
     <Compile Include="ConfigurationReader.cs" />
+    <Compile Include="ConfigurationWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XmlReaderBase.cs" />
   </ItemGroup>

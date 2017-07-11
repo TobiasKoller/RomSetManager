@@ -1,0 +1,123 @@
+
+
+
+
+
+
+
+
+<namepart name="USA" value="(U)" system="any" type="language" description=""/>
+<namepart name="Europe" value="(E)" system="any" type="language" ignore="false" description=""/>
+<namepart name="Japan" value="(J)" system="any" type="language" ignore="false" description=""/>
+<namepart name="German" value="(G)" system="any" type="language" ignore="false" description=""/>
+<namepart name="Bad Dump" value="[b*]" system="any" type="language" ignore="false" description="A bad dump often occurs with an older game or a faulty dumper (bad connection). Another common source of [b] ROMs is a corrupted upload to a release FTP. "/>
+<namepart name="Hack" value="[h*]" system="any" type="language" ignore="false" description="Something in this ROM is not quite as it should be. Often a hacked ROM simply has a changed header or has been enabled to run in different regions. Other times it could be a release group intro, or just some kind of cheating or funny hack."/>
+<namepart name="OverDump" value="[o*]" system="any" type="language" ignore="false" description="An overdumped ROM image has more data than is actually in the cart. The extra information means nothing and is removed from the true image."/>
+<namepart name="Verified good dump" value="[!],(!)" system="any" type="language" ignore="false" description="Verified good dump. Thank God for these!"/>
+<namepart name="Alternative version" value="[a]" system="any" type="language" ignore="false" description="This is simply an alternate version of a ROM. Many games have been re-released to fix bugs or even to eliminate Game Genie codes (Yes, Nintendo hates that device)."/>
+<namepart name="Fixed" value="[f*]" system="any" type="language" ignore="false" description="A fixed game has been altered in some way so that it will run better on a copier or emulator."/>
+<namepart name="Multilanguage" value="[m*],(M#)" system="any" type="language" ignore="false" description=""/>
+<namepart name="USA/Japan" value="(JU)" system="any" type="language" ignore="false" description=""/>
+<namepart name=Europe/Japan"" value="(JE)" system="any" type="language" ignore="false" description=""/>
+<namepart name="USA/Europe/Japan" value="(JUE)" system="any" type="language" ignore="false" description=""/>
+<namepart name="Checksum" value="(###)" system="any" type="language" ignore="false" description=""/>
+<namepart name="Unclassified" value="ZZZ_" system="any" type="language" ignore="false" description=""/>
+<namepart name="Pirate" value="[p]" system="any" type="language" ignore="false" description=""/>
+<namepart name="Trained" value="[t]" system="any" type="language" ignore="false" description="A trainer is special code which executes before the game is begun. It allows you to access cheats from a menu."/>
+<namepart name="Old Translation" value="[T-]" system="any" type="language" ignore="false" description=""/>
+<namepart name="Newer Translation" value="[T+]" system="any" type="language" ignore="false" description=""/>
+<namepart name="Unknown Year" value="(-)" system="any" type="language" ignore="false" description=""/>
+<namepart name="ROM Size" value="(??k)" system="any" type="language" ignore="false" description=""/>
+<namepart name="Unlicensed" value="(Unl)" system="any" type="language" ignore="false" description=""/>
+<namepart name="Super" value="[S]" system="Gameboy" type="language" ignore="false" description=""/>
+<namepart name="Bung Fix" value="[BF]" system="Gameboy" type="language" ignore="false" description=""/>
+<namepart name="Color" value="[C]" system="Gameboy" type="language" ignore="false" description=""/>
+<namepart name="BS ROMs" value="(BS)" system="SNES" type="language" ignore="false" description="These Japanese ROMs were distributed through a satellite system in Japan known as the Broadcast Satellaview. They were transmitted along with a TV show which was connected to the game in some way. These games were only playable during the show, and thus stop after an hour, and many were timed so that only certain time periods were playable.     "/>
+<namepart name="Sufami Turbo" value="(ST)" system="SNES" type="language" ignore="false" description="The Sufami Turbo device allowed two GameBoy sized carts to be plugged into the SNES. Certain carts combined into new games much like the Sonic & Knuckles lock-on technology by Sega."/>
+<namepart name="Nintendo Power" value="(NP)" system="SNES" type="language" ignore="false" description="Nintendo Power has been known to release games only available to its subscribers. Most of these ROMs are Japanese, as this practice occured mainly in Japan.  "/>
+<namepart name="Japan" value="(1)" system="any" type="language" ignore="false" description="Carts with this code will run on both Japanese and Korean machines."/>
+<namepart name="USA" value="(4)" system="any" type="language" ignore="false" description=""/>
+<namepart name="NTSC Only" value="(5)" system="any" type="language" ignore="false" description=""/>
+<namepart name="PAL Only" value="(8)" system="any" type="language" ignore="false" description=""/>
+<namepart name="non USA" value="(B)" system="Genesis/Megadrive" type="language" ignore="false" description=""/>
+<namepart name="Checksum" value="[c]" system="any" type="language" ignore="false" description=""/>
+<namepart name="Bad Checksum" value="[x]" system="any" type="language" ignore="false" description=""/>
+<namepart name="Countries" value="[R-]" system="any" type="language" ignore="false" description=""/>
+<namepart name="Euro Version" value="(PAL)" system="Atari" type="language" ignore="false" description=""/>
+<namepart name="Intro hacks" value="[hI??]" system="any" type="GBA" ignore="false" description=""/>
+<namepart name="ADAM Version" value="(Adam)" system="Coleco" type="language" ignore="false" description=""/>
+<namepart name="Mono Only " value="[M]" system="NeoGeo Pocket" type="language" ignore="false" description=""/>
+<namepart name="PlayChoice 10" value="(PC10)" system="NES/FC" type="language" ignore="false" description=""/>
+<namepart name="Versus" value="(VS)" system="NES/FC" type="language" ignore="false" description=""/>
+<namepart name="FFE Copier fmt" value="[hFFE]" system="NES/FC" type="language" ignore="false" description=""/>
+<namepart name="Australia" value="(A)" system="any" type="language" ignore="false" description=""/>
+<namepart name="France" value="(F)" system="any" type="language" ignore="false" description=""/>
+<namepart name="World" value="(F)" system="Genesis/Megadrive" type="language" ignore="false" description=""/>
+<namepart name="French Canadian" value="(FC)" system="any" type="language" ignore="false" description=""/>
+<namepart name="Finland" value="(FN)" system="any" type="language" ignore="false" description=""/>
+<namepart name="Greece" value="(GR)" system="any" type="language" ignore="false" description=""/>
+<namepart name="Hong Kong" value="(HK)" system="any" type="language" ignore="false" description=""/>
+<namepart name="Korea" value="(K)" system="any" type="language" ignore="false" description=""/>
+<namepart name="Netherlands" value="(NL)" system="any" type="language" ignore="false" description=""/>
+<namepart name="Public Domain" value="(PD)" system="any" type="language" ignore="false" description=""/>
+<namepart name="Spain" value="(S)" system="any" type="language" ignore="false" description=""/>
+<namepart name="Sweden" value="(SW)" system="any" type="language" ignore="false" description=""/>
+<namepart name="England" value="(UK)" system="any" type="language" ignore="false" description=""/>
+<namepart name="Unknown Country" value="(Unk)" system="any" type="language" ignore="false" description=""/>
+<namepart name="Italy" value="(I)" system="any" type="language" ignore="false" description=""/>
+<namepart name="" value="" system="any" type="language" ignore="false" description=""/>
+<namepart name="" value="" system="any" type="language" ignore="false" description=""/>
+
+
+
+
+:                                               :\
+: **** Genesis ****                             :\
+:  (1) Carts with this code will run on both    :\
+:      Japanese and Korean machines.            :\
+:             -------------------               :\
+:  (4) While this code is technically the same  :\
+:      as a (U) code, it is a newer header      :\
+:      format and represents that the cart will :\
+:      run on USA and Brazil NTSC machines.     :\
+:             -------------------               :\
+:  (B) This country code indicates that the     :\
+:      cart will run on any non US machine.     :\
+:             -------------------               :\
+:  [c] This code represents a cart with known   :\
+:      faulty checksum routines.                :\
+:             -------------------               :\
+:                                               :\
+: **** GameBoy ****                             :\
+: [BF] Bung released a programmable cartridge   :\
+:      compatable with the GameBoy which could  :\
+:      hold any data you wished to play.        :\
+:      However, many games do not function on   :\
+:      Bung v1.0 carts and have to be 'fixed.'  :\
+:             -------------------               :\
+:                                               :\
+: **** Nintendo ****                            :\
+: PC10 The PlayChoice 10 was an arcade unit     :\
+:      which played exact copies of NES games   :\
+:      in an arcade cabinet. The machines had a :\
+:      choice of 10 games to choose from and    :\
+:      ran for about 3 minutes on 25 cents.     :\
+:             -------------------               :\
+:                                               :\
+:   VS The Versus system ran on similar hard-   :\
+:      ware to the PC10 machines, but simply    :\
+:      allowed you to play against each other.  :\
+:...............................................:\
+ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+                   ...........
+...................: Credits ::..................
+:                                               :\
+: Document written by Psych0phobiA / q^-o|o-^p  :\
+:                                               :\
+: All codes developed by Cowering for the       :\
+: Goodxxxx series ROM file renaming utilities.  :\
+:                                               :\
+: Visit #rareroms on NewNet in IRC!             :\ 
+:...............................................:\
+ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

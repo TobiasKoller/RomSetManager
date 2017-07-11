@@ -3,52 +3,128 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:RomSetManager.Views.Dialogs"
              xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
              xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:cal="http://www.caliburnproject.org"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:constants="clr-namespace:Model.Constants;assembly=Model"
+             xmlns:views="clr-namespace:RomSetManager.Views"
              mc:Ignorable="d" 
              
-             Width="500" Height="400"
-             d:DesignHeight="300" d:DesignWidth="300"
+                      Height="{Binding SystemParameters.PrimaryScreenHeight}" 
+                      Width="{Binding SystemParameters.PrimaryScreenWidth}"
+             d:DesignHeight="800" d:DesignWidth="800"
                       BorderThickness="0" 
                       GlowBrush="Black"
                       ResizeMode="CanResizeWithGrip"
                       WindowTransitionsEnabled="False"
                       WindowStartupLocation="CenterScreen">
-    
+
     <controls:MetroWindow.Resources>
         <Style x:Key="UpDownBtn" TargetType="Button">
             <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
             <Setter Property="Width" Value="15"></Setter>
         </Style>
+        <Style x:Key="DialogButton" TargetType="Button">
+            <Setter Property="Height" Value="25"></Setter>
+            <Setter Property="Width" Value="60"></Setter>
+            <Setter Property="Margin" Value="5 0 0 0"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        </Style>
     </controls:MetroWindow.Resources>
-   
-    <StackPanel Orientation="Horizontal">
-       <GroupBox Header="Langauges">
-           <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="30"/>
-                </Grid.ColumnDefinitions>
-                <DataGrid x:Name="LanguageGrid" ItemsSource="{Binding Languages}" AutoGenerateColumns="False" Grid.Column="0" cal:Message.Attach="[Event SelectionChanged] = [Action SelectedLanguageChanged($source)]">
-                   <DataGrid.Columns>
-                       <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
-                       <DataGridTextColumn Header="Type" Binding="{Binding Value}"></DataGridTextColumn>
-                       <DataGridTextColumn Header="Position" Binding="{Binding Position}"></DataGridTextColumn>
-                   </DataGrid.Columns>
-               </DataGrid>
-               <StackPanel Grid.Column="1" Orientation="Vertical">
-                    <Button x:Name="LanguageUp" Style="{StaticResource UpDownBtn}">
-                       <fa:FontAwesome Icon="ArrowUp"/>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" LastChildFill="True">
+            <GroupBox Header="Information" DockPanel.Dock="Top">
+                <TextBlock>
+                    Choose your preferences from Position #1 (Most important) to Position #x (not important).<LineBreak/>
+                    You can also choose for each entry if you want to Include it (include=yes) or ignore it (include=No).
+                    If you choose 'no' than these roms will get ignored.
+                </TextBlock>
+
+
+            </GroupBox>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+                <GroupBox Header="Included Preferences" Grid.Row="0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="30"/>
+                        </Grid.ColumnDefinitions>
+                        <DataGrid x:Name="PreferencesIncludedGrid" ItemsSource="{Binding NamePartsIncluded}" AutoGenerateColumns="False" Grid.Column="0"
+                                  CanUserAddRows="false" CanUserDeleteRows="false" CanUserResizeRows="false" CanUserSortColumns="False"
+                                  cal:Message.Attach="[Event SelectionChanged] = [Action SelectedPreferenceChanged($source)]">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="#" Binding="{Binding Position}" Width="30"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Value" Binding="{Binding Value}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="System" Binding="{Binding System}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Type" Binding="{Binding Type}"></DataGridTextColumn>
+                                <!--<DataGridComboBoxColumn Header="Include" ItemsSource="{Binding Source={views:EnumBindingSource {x:Type constants:IncludeType}}}" SelectedItemBinding="{Binding Include}"></DataGridComboBoxColumn>-->
+                                <DataGridTextColumn Header="Description" Binding="{Binding Description}"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <StackPanel Grid.Column="1" Orientation="Vertical">
+                            <Button x:Name="PreferenceIncludedUp" Style="{StaticResource UpDownBtn}">
+                                <fa:FontAwesome Icon="ArrowUp"/>
+                            </Button>
+                            <Button x:Name="PreferenceIncludedDown" Style="{StaticResource UpDownBtn}">
+                                <fa:FontAwesome Icon="ArrowDown" />
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
+                <StackPanel Orientation="Horizontal" Grid.Row="1">
+                    <Button x:Name="IncludeSelected" Style="{StaticResource DialogButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock>Include</TextBlock>
+                            <fa:FontAwesome Icon="ArrowUp"/>
+                        </StackPanel>
                     </Button>
-                    <Button x:Name="LanguageDown" Style="{StaticResource UpDownBtn}">
-                       <fa:FontAwesome Icon="ArrowDown" />
+                    <Button x:Name="ExcludeSelected" Style="{StaticResource DialogButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock>Exclude</TextBlock>
+                            <fa:FontAwesome Icon="ArrowDown"/>
+                        </StackPanel>
                     </Button>
                 </StackPanel>
+                <GroupBox Header="Included Preferences" Grid.Row="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="30"/>
+                        </Grid.ColumnDefinitions>
+                        <DataGrid x:Name="PreferencesExcludedGrid" ItemsSource="{Binding NamePartsExcluded}" AutoGenerateColumns="False" Grid.Column="0"
+                                  CanUserAddRows="false" CanUserDeleteRows="false" CanUserResizeRows="false" CanUserSortColumns="False"
+                                  cal:Message.Attach="[Event SelectionChanged] = [Action SelectedPreferenceChanged($source)]">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="#" Binding="{Binding Position}" Width="30"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Value" Binding="{Binding Value}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="System" Binding="{Binding System}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Type" Binding="{Binding Type}"></DataGridTextColumn>
+                                <!--<DataGridComboBoxColumn Header="Include" ItemsSource="{Binding Source={views:EnumBindingSource {x:Type constants:IncludeType}}}" SelectedItemBinding="{Binding Include}"></DataGridComboBoxColumn>-->
+                                <DataGridTextColumn Header="Description" Binding="{Binding Description}"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </GroupBox>
             </Grid>
-           
-       </GroupBox>
-   </StackPanel>
+        </DockPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" FlowDirection="RightToLeft" Margin="0,0,10,0">
+            <Button x:Name="Ok" Style="{StaticResource DialogButton}">OK</Button>
+            <Button x:Name="Cancel" Style="{StaticResource DialogButton}">Cancel</Button>
+        </StackPanel>
+    </Grid>
+
 </controls:MetroWindow>

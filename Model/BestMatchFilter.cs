@@ -2,7 +2,7 @@
 {
     public class BestMatchFilter
     {
-        public LanguageList Languages { get; set; }
+        public Preferences Languages { get; set; }
 
     }
 }

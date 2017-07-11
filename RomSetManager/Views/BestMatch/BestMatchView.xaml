@@ -6,8 +6,8 @@
       xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
       xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
-      Title="BestMatchView" Background="White">
+      d:DesignHeight="300"
+      Title="BestMatchView" Background="White" d:DesignWidth="824">
 
     <Page.Resources>
         <Style TargetType="TextBlock" x:Key="FileChooseLabel">
@@ -18,21 +18,26 @@
             <Setter Property="Width" Value="300"></Setter>
             <Setter Property="IsEnabled" Value="False"></Setter>
         </Style>
+        <Style TargetType="Button" x:Key="CommonBtn">
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Height" Value="30" />
+        </Style>
     </Page.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" >
-            <Button x:Name="EditFilter">Edit Filter</Button>
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <Button x:Name="EditPreferences">Edit Preferences</Button>
             <StackPanel Orientation="Vertical" Margin="5">
 
                 <StackPanel Orientation="Horizontal" Height="25" Margin="0 0 0 3">
                     <TextBlock Text="Source Rom Directory:" Style="{StaticResource FileChooseLabel}"></TextBlock>
                     <TextBox Style="{StaticResource FileChooseTextbox}" Text="{Binding SourceDirectory}"></TextBox>
                     <Button x:Name="SelectSourceDirectory">select</Button>
+                    <Button x:Name="CloneDirectoryFromRetropie" Margin="5 0 0 0">Clone Directory-Structure from RetroPie</Button>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Height="25">
                     <TextBlock Text="Output Rom Directory:" Style="{StaticResource FileChooseLabel}"></TextBlock>
@@ -40,8 +45,24 @@
                     <Button x:Name="SelectDestinationDirectory">select</Button>
                 </StackPanel>
             </StackPanel>
-            
         </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Row="0">
+                <Button x:Name="ReadSourceRomFiles" Style="{StaticResource CommonBtn}">Read Source-Rom Directory</Button>
+            </StackPanel>
+            <DataGrid x:Name="BestMatchGrid" ItemsSource="{Binding RomFiles}" AutoGenerateColumns="False" Grid.Row="1"
+                      CanUserAddRows="false" CanUserDeleteRows="false" CanUserResizeRows="false" CanUserSortColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="System" Binding="{Binding System}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="FileName" Binding="{Binding FileName}"></DataGridTextColumn>
+                    <DataGridCheckBoxColumn Header="IsZipped" Binding="{Binding IsInCompressedFile}"></DataGridCheckBoxColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
     </Grid>
 
 

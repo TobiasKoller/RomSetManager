@@ -1,49 +1,115 @@
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
 using Model;
+using Model.Constants;
 
 namespace RomSetManager.Views.Dialogs.BestMatchFilter
 {
     public partial class BestMatchFilterDialogViewModel
     {
 
-        public void SelectedLanguageChanged(DataGrid sender)
+        public void SelectedPreferenceChanged(DataGrid sender)
         {
-            if (sender.SelectedItem == null)
+            if (sender.SelectedItems == null)
                 return;
 
-            CurrentSelectedLanguage = (Language)sender.SelectedItem;
+            var list = (sender.Name == "PreferencesExcludedGrid") ? CurrentSelectedExcludedNameParts : CurrentSelectedIncludedNameParts;
+
+            list.Clear();
+            foreach (var senderSelectedItem in sender.SelectedItems)
+            {
+                if (sender.SelectedItem is NamePart)
+                    list.Add((NamePart)senderSelectedItem);
+            }
         }
 
-        public void LanguageUp()
+       
+        public void PreferenceIncludedUp()
         {
-            RePositionLangugage(-1, 1);
+            RepositioningPreference(-1, 1,NamePartsIncluded);
         }
 
-        public void LanguageDown()
+        public void PreferenceIncludedDown()
         {
-            RePositionLangugage(1, Languages.Count);
+            RepositioningPreference(1, NamePartsIncluded.Count, NamePartsIncluded);
         }
 
-        private void RePositionLangugage(int step, int max)
+        public void ExcludeSelected()
         {
-            if ((step > 0) && (CurrentSelectedLanguage == null || CurrentSelectedLanguage.Position >= max))
+            var copy = CurrentSelectedIncludedNameParts.ToList();
+
+            foreach (var currentSelectedNamePart in copy)
+            {
+                currentSelectedNamePart.Include = IncludeType.No;
+                NamePartsExcluded.Add(currentSelectedNamePart);
+                NamePartsIncluded.Remove(currentSelectedNamePart);
+            }
+        }
+
+        public void IncludeSelected()
+        {
+            var copy = CurrentSelectedExcludedNameParts.ToList();
+            var pos = NamePartsIncluded.Max(n => n.Position);
+
+            foreach (var currentSelectedNamePart in copy)
+            {
+                pos++;
+                currentSelectedNamePart.Position = pos;
+                currentSelectedNamePart.Include = IncludeType.Yes;
+                NamePartsIncluded.Add(currentSelectedNamePart);
+                NamePartsExcluded.Remove(currentSelectedNamePart);
+                
+            }
+        }
+
+        public void Ok()
+        {
+            //updating languages
+            var service = ServiceProvider.ConfigurationService;
+            var config = service.GetConfiguration();
+
+            var preferences = new Preferences();
+            foreach (var namePart in NamePartsIncluded)
+                preferences.NameParts.Add(namePart);
+            foreach (var namePart in NamePartsExcluded)
+                preferences.NameParts.Add(namePart);
+
+            config.BestMatch.Preferences = preferences;
+            service.UpdateConfiguration(config);
+
+            TryClose(true);
+        }
+
+        public void Cancel()
+        {
+            TryClose(true);
+        }
+
+        private void RepositioningPreference(int step, int max, ObservableCollection<NamePart> namePartList)
+        {
+            if (CurrentSelectedIncludedNameParts.Count == 0 || CurrentSelectedIncludedNameParts.Count > 1)
                 return;
-            if ((step < 0) && (CurrentSelectedLanguage == null || CurrentSelectedLanguage.Position < max))
+
+            var current = CurrentSelectedIncludedNameParts.First();
+
+            if ((step > 0) && (current == null || current.Position >= max))
+                return;
+            if ((step < 0) && (current == null || current.Position < max))
                 return;
 
 
-            var currentPos = CurrentSelectedLanguage.Position;
+            var currentPos = current.Position;
             var prevPos = currentPos + step;
 
-            var prevLanguage = Languages.FirstOrDefault(l => l.Position == prevPos);
+            var prevLanguage = namePartList.FirstOrDefault(l => l.Position == prevPos);
             if (prevLanguage == null)
                 return;
 
             prevLanguage.Position = currentPos;
-            CurrentSelectedLanguage.Position = prevPos;
+            current.Position = prevPos;
 
-            SetLanguageList(Languages.OrderBy(l => l.Position).ToList());
+            InitNamePartList(namePartList, namePartList.OrderBy(l => l.Position).ToList());
         }
     }
 }

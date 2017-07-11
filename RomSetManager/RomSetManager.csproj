@@ -49,6 +49,9 @@
     <Reference Include="MahApps.Metro, Version=1.5.0.23, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.1.5.0\lib\net45\MahApps.Metro.dll</HintPath>
     </Reference>
+    <Reference Include="SharpCompress, Version=0.17.1.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpCompress.0.17.1\lib\net45\SharpCompress.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
@@ -79,11 +82,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="IoC\SimpleContainerEx.cs" />
+    <Compile Include="RomFileReader.cs" />
+    <Compile Include="Services\ConfigurationService.cs" />
     <Compile Include="Views\Dialogs\BestMatchFilter\BestMatchFilterDialogView.xaml.cs">
       <DependentUpon>BestMatchFilterDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Dialogs\BestMatchFilter\BestMatchFilterDialogViewCommand.cs" />
     <Compile Include="Views\Dialogs\BestMatchFilter\BestMatchFilterDialogViewModel.cs" />
+    <Compile Include="Views\EnumBindingSourceExtension.cs" />
     <Compile Include="Views\Shell\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
     </Compile>
@@ -162,9 +168,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Configuration.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

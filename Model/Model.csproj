@@ -42,11 +42,14 @@
   <ItemGroup>
     <Compile Include="BestMatch.cs" />
     <Compile Include="Configuration.cs" />
-    <Compile Include="ElementNode.cs" />
+    <Compile Include="Constants\CompressionType.cs" />
     <Compile Include="BestMatchFilter.cs" />
-    <Compile Include="Language.cs" />
-    <Compile Include="LanguageList.cs" />
+    <Compile Include="Constants\IncludeType.cs" />
+    <Compile Include="Constants\NamePartType.cs" />
+    <Compile Include="NamePart.cs" />
+    <Compile Include="Preferences.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RomFile.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -17,11 +17,8 @@ namespace Configuration
         }
         
 
-        public Model.Configuration GetConfiguration(bool reinit=false)
+        public Model.Configuration GetConfiguration()
         {
-            if (reinit == false && _configuration != null)
-                return _configuration;
-
             _configuration = new Model.Configuration();
 
             XmlDocument.Load(Path.Combine(_directory, "Configuration.xml"));
@@ -32,5 +29,4 @@ namespace Configuration
         }
         
     }
-    
 }
