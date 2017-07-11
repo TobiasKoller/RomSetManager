@@ -9,3 +9,9 @@
 *.suo
 *.suo
 /.vs/RomSetManager/v15/.suo
+
+/Configuration/bin/Debug
+/Configuration/obj/Debug
+/Configuration/bin/Debug
+/Model/bin/Debug
+/Model/obj/Debug
