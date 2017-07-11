@@ -41,28 +41,42 @@
         <DockPanel Grid.Row="0" LastChildFill="True">
             <GroupBox Header="Information" DockPanel.Dock="Top">
                 <TextBlock>
-                    Choose your preferences from Position #1 (Most important) to Position #x (not important).<LineBreak/>
-                    You can also choose for each entry if you want to Include it (include=yes) or ignore it (include=No).
-                    If you choose 'no' than these roms will get ignored.
+                    Choose your favorites, MUST HAVES, Dont'ts,etc..
                 </TextBlock>
-
-
             </GroupBox>
             <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="5*"/>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="5*"/>
                 </Grid.RowDefinitions>
-                <GroupBox Header="Included Preferences" Grid.Row="0">
+
+                <GroupBox Header="Favorites" Grid.Row="0" Grid.Column="0">
                     <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="30"/>
                         </Grid.ColumnDefinitions>
-                        <DataGrid x:Name="PreferencesIncludedGrid" ItemsSource="{Binding NamePartsIncluded}" AutoGenerateColumns="False" Grid.Column="0"
-                                  CanUserAddRows="false" CanUserDeleteRows="false" CanUserResizeRows="false" CanUserSortColumns="False"
-                                  cal:Message.Attach="[Event SelectionChanged] = [Action SelectedPreferenceChanged($source)]">
+                        <TextBlock Grid.Row="0" Grid.ColumnSpan="2">
+                            <StackPanel Orientation="Horizontal">
+                                <Button  Style="{DynamicResource MetroCircleButtonStyle}" Width="30" Background="GreenYellow">
+                                    <fa:FontAwesome Icon="Info" />
+                                </Button>
+                                <Label>Choose what language/property is most important to you (pos #1=most important). </Label>
+                            </StackPanel>
+                        </TextBlock>
+                        <DataGrid x:Name="PreferencesIncludedGrid" ItemsSource="{Binding NamePartsIncluded}" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="1"
+                                    CanUserAddRows="false" CanUserDeleteRows="false" CanUserResizeRows="false" CanUserSortColumns="False"
+                                    cal:Message.Attach="[Event SelectionChanged] = [Action SelectedPreferenceChanged($source)]"
+                                    SelectedIndex="{Binding PreferencesIncludedSelectedIndex}"  >
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="#" Binding="{Binding Position}" Width="30"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
@@ -73,7 +87,7 @@
                                 <DataGridTextColumn Header="Description" Binding="{Binding Description}"></DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <StackPanel Grid.Column="1" Orientation="Vertical">
+                        <StackPanel Grid.Column="1" Orientation="Vertical" Grid.Row="1">
                             <Button x:Name="PreferenceIncludedUp" Style="{StaticResource UpDownBtn}">
                                 <fa:FontAwesome Icon="ArrowUp"/>
                             </Button>
@@ -83,31 +97,25 @@
                         </StackPanel>
                     </Grid>
                 </GroupBox>
-                <StackPanel Orientation="Horizontal" Grid.Row="1">
-                    <Button x:Name="IncludeSelected" Style="{StaticResource DialogButton}">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock>Include</TextBlock>
-                            <fa:FontAwesome Icon="ArrowUp"/>
-                        </StackPanel>
-                    </Button>
-                    <Button x:Name="ExcludeSelected" Style="{StaticResource DialogButton}">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock>Exclude</TextBlock>
-                            <fa:FontAwesome Icon="ArrowDown"/>
-                        </StackPanel>
-                    </Button>
-                </StackPanel>
-                <GroupBox Header="Included Preferences" Grid.Row="2">
+                <GroupBox Header="I don't care" Grid.Row="2" Grid.Column="0">
                     <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="30"/>
-                        </Grid.ColumnDefinitions>
-                        <DataGrid x:Name="PreferencesExcludedGrid" ItemsSource="{Binding NamePartsExcluded}" AutoGenerateColumns="False" Grid.Column="0"
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0">
+                            <StackPanel Orientation="Horizontal">
+                                
+                                <Button  Style="{DynamicResource MetroCircleButtonStyle}" Width="30" Background="GreenYellow">
+                                    <fa:FontAwesome Icon="Info" />
+                                </Button>
+                                <Label>You don't care about these items if they appear in the rom-names or not. </Label>
+                            </StackPanel>
+                        </TextBlock>
+                        <DataGrid x:Name="PreferencesExcludedGrid" ItemsSource="{Binding NamePartsExcluded}" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="1"
                                   CanUserAddRows="false" CanUserDeleteRows="false" CanUserResizeRows="false" CanUserSortColumns="False"
-                                  cal:Message.Attach="[Event SelectionChanged] = [Action SelectedPreferenceChanged($source)]">
+                                  cal:Message.Attach="[Event SelectionChanged] = [Action SelectedPreferenceChanged($source)]" >
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="#" Binding="{Binding Position}" Width="30"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Value" Binding="{Binding Value}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="System" Binding="{Binding System}"></DataGridTextColumn>
@@ -117,6 +125,36 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
+                </GroupBox>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0">
+                    <Button x:Name="AddSelectionToFavorites" Style="{StaticResource DialogButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock>Add to Favorites</TextBlock>
+                            <fa:FontAwesome Icon="ArrowUp"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="AddToIdontCare" Style="{StaticResource DialogButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock>Add to 'I dont care'</TextBlock>
+                            <fa:FontAwesome Icon="ArrowDown"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="AddToNeverUse" Style="{StaticResource DialogButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock>Add to 'I dont care'</TextBlock>
+                            <fa:FontAwesome Icon="ArrowDown"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="AddToMustHaves" Style="{StaticResource DialogButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock>Add to 'MUST HAVES'</TextBlock>
+                            <fa:FontAwesome Icon="ArrowDown"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+                <GroupBox Grid.Row="0" Grid.Column="1" Header="Must HAVES!!">
+                </GroupBox>
+                <GroupBox Grid.Row="2" Grid.Column="1" Header="NEVER use these!!">
                 </GroupBox>
             </Grid>
         </DockPanel>

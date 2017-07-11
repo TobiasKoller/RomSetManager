@@ -21,6 +21,17 @@ namespace RomSetManager.Views.Dialogs.BestMatchFilter
         public List<NamePart> CurrentSelectedIncludedNameParts { get; set; }
         public List<NamePart> CurrentSelectedExcludedNameParts { get; set; }
 
+        private int _preferencesIncludedSelectedIndex = -1;
+        public int PreferencesIncludedSelectedIndex
+        {
+            get => _preferencesIncludedSelectedIndex;
+            set
+            {
+                _preferencesIncludedSelectedIndex = value;
+                NotifyOfPropertyChange(()=>PreferencesIncludedSelectedIndex);
+            }
+        }
+
         public BestMatchFilterDialogViewModel(string name, SimpleContainerEx container, IEventAggregator eventAggregator, INavigationServiceProvider navigationServiceProvider, 
             IServiceProvider serviceProvider) 
             : base(name, container, eventAggregator, navigationServiceProvider, Constants.FRAME_MAIN, serviceProvider)

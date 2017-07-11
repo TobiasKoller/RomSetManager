@@ -88,7 +88,10 @@ namespace RomSetManager.Views.Dialogs.BestMatchFilter
 
         private void RepositioningPreference(int step, int max, ObservableCollection<NamePart> namePartList)
         {
-            if (CurrentSelectedIncludedNameParts.Count == 0 || CurrentSelectedIncludedNameParts.Count > 1)
+            //if (CurrentSelectedIncludedNameParts.Count == 0 || CurrentSelectedIncludedNameParts.Count > 1)
+            //    return;
+
+            if (PreferencesIncludedSelectedIndex == -1)
                 return;
 
             var current = CurrentSelectedIncludedNameParts.First();
@@ -100,16 +103,19 @@ namespace RomSetManager.Views.Dialogs.BestMatchFilter
 
 
             var currentPos = current.Position;
-            var prevPos = currentPos + step;
+            var nextPos = currentPos + step;
 
-            var prevLanguage = namePartList.FirstOrDefault(l => l.Position == prevPos);
-            if (prevLanguage == null)
+            var prevNamePart = namePartList.FirstOrDefault(l => l.Position == nextPos);
+            if (prevNamePart == null)
                 return;
 
-            prevLanguage.Position = currentPos;
-            current.Position = prevPos;
+            prevNamePart.Position = currentPos;
+            current.Position = nextPos;
+
 
             InitNamePartList(namePartList, namePartList.OrderBy(l => l.Position).ToList());
+            
+            PreferencesIncludedSelectedIndex = nextPos-1;
         }
     }
 }
