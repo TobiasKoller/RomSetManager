@@ -32,6 +32,12 @@
             <Setter Property="Margin" Value="5 0 0 0"></Setter>
             <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
         </Style>
+        <Style x:Key="ActionButton" TargetType="Button">
+            <Setter Property="Height" Value="25"></Setter>
+            <Setter Property="Width" Value="130"></Setter>
+            <Setter Property="Margin" Value="5 0 0 0"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        </Style>
     </controls:MetroWindow.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -55,30 +61,45 @@
                     <RowDefinition Height="5*"/>
                 </Grid.RowDefinitions>
 
-                <GroupBox Header="Favorites" Grid.Row="0" Grid.Column="0">
+                <GroupBox Header="Favorites (What is most imporant to you.#1=most important)" Grid.Row="0" Grid.Column="0" Background="GreenYellow">
                     <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="30"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Row="0" Grid.ColumnSpan="2">
-                            <StackPanel Orientation="Horizontal">
-                                <Button  Style="{DynamicResource MetroCircleButtonStyle}" Width="30" Background="GreenYellow">
-                                    <fa:FontAwesome Icon="Info" />
-                                </Button>
-                                <Label>Choose what language/property is most important to you (pos #1=most important). </Label>
-                            </StackPanel>
-                        </TextBlock>
-                        <DataGrid x:Name="PreferencesIncludedGrid" ItemsSource="{Binding NamePartsIncluded}" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="1"
-                                    CanUserAddRows="false" CanUserDeleteRows="false" CanUserResizeRows="false" CanUserSortColumns="False"
-                                    cal:Message.Attach="[Event SelectionChanged] = [Action SelectedPreferenceChanged($source)]"
-                                    SelectedIndex="{Binding PreferencesIncludedSelectedIndex}"  >
+                        <DockPanel Grid.Column="0">
+                            <DataGrid x:Name="FavoriteGrid" ItemsSource="{Binding FavoriteItems}" AutoGenerateColumns="False" 
+                                      CanUserAddRows="false" CanUserDeleteRows="false" CanUserResizeRows="false" CanUserSortColumns="False"
+                                      cal:Message.Attach="[Event SelectionChanged] = [Action GridSelectionChanged($source,'Favorite')]"
+                                      SelectedIndex="{Binding FavoriteSelectedIndex}"  >
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="#" Binding="{Binding Position}" Width="30"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Value" Binding="{Binding Value}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="System" Binding="{Binding System}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Type" Binding="{Binding Type}"></DataGridTextColumn>
+                                    <!--<DataGridComboBoxColumn Header="Include" ItemsSource="{Binding Source={views:EnumBindingSource {x:Type constants:IncludeType}}}" SelectedItemBinding="{Binding Include}"></DataGridComboBoxColumn>-->
+                                    <DataGridTextColumn Header="Description" Binding="{Binding Description}"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </DockPanel>
+                        <StackPanel Grid.Column="1" Orientation="Vertical">
+                            <Button x:Name="FavoriteItemUp" Style="{StaticResource UpDownBtn}">
+                                <fa:FontAwesome Icon="ArrowUp"/>
+                            </Button>
+                            <Button x:Name="FavoriteItemDown" Style="{StaticResource UpDownBtn}">
+                                <fa:FontAwesome Icon="ArrowDown" />
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Header="I don't care (You don't care about these items if they appear in the rom-names or not)" Grid.Row="2" Grid.Column="0" Background="LightGray">
+                    <DockPanel>
+                        <DataGrid x:Name="DontCareGrid" ItemsSource="{Binding DontCareItems}" AutoGenerateColumns="False"
+                                  CanUserAddRows="false" CanUserDeleteRows="false" CanUserResizeRows="false" CanUserSortColumns="False"
+                                  cal:Message.Attach="[Event SelectionChanged] = [Action GridSelectionChanged($source,'DontCare')]"
+                                  SelectedIndex="{Binding DontCareSelectedIndex}">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="#" Binding="{Binding Position}" Width="30"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Value" Binding="{Binding Value}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="System" Binding="{Binding System}"></DataGridTextColumn>
@@ -87,34 +108,43 @@
                                 <DataGridTextColumn Header="Description" Binding="{Binding Description}"></DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <StackPanel Grid.Column="1" Orientation="Vertical" Grid.Row="1">
-                            <Button x:Name="PreferenceIncludedUp" Style="{StaticResource UpDownBtn}">
-                                <fa:FontAwesome Icon="ArrowUp"/>
-                            </Button>
-                            <Button x:Name="PreferenceIncludedDown" Style="{StaticResource UpDownBtn}">
-                                <fa:FontAwesome Icon="ArrowDown" />
-                            </Button>
-                        </StackPanel>
-                    </Grid>
+                    </DockPanel>
                 </GroupBox>
-                <GroupBox Header="I don't care" Grid.Row="2" Grid.Column="0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0">
+                    <Button x:Name="AddSelectedToFavorite" Style="{StaticResource ActionButton}" Background="GreenYellow">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock>Add to Favorites</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="AddSelectedToDontCare" Style="{StaticResource ActionButton}" Background="LightGray">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock>Add to 'I dont care'</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="AddSelectedToMustHaves" Style="{StaticResource ActionButton}" Background="Blue" Foreground="White">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock>Add to 'MUST HAVES'</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="AddSelectedToNeverUse" Style="{StaticResource ActionButton}" Background="OrangeRed" Foreground="White">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock>Add to 'NEVER use'</TextBlock>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+                <GroupBox Grid.Row="0" Grid.Column="1" Header="Must HAVES!! (These items HAVE to be present in the rom-filename)" Background="Blue">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Row="0">
-                            <StackPanel Orientation="Horizontal">
-                                
-                                <Button  Style="{DynamicResource MetroCircleButtonStyle}" Width="30" Background="GreenYellow">
-                                    <fa:FontAwesome Icon="Info" />
-                                </Button>
-                                <Label>You don't care about these items if they appear in the rom-names or not. </Label>
-                            </StackPanel>
+                                <CheckBox IsChecked="{Binding IgnoreMustHaveForOneRom}">Ignore these settings if there is only one rom available for a game.</CheckBox>
                         </TextBlock>
-                        <DataGrid x:Name="PreferencesExcludedGrid" ItemsSource="{Binding NamePartsExcluded}" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="1"
+                        <DataGrid x:Name="MustHaveGrid" ItemsSource="{Binding MustHavesItems}" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="1"
                                   CanUserAddRows="false" CanUserDeleteRows="false" CanUserResizeRows="false" CanUserSortColumns="False"
-                                  cal:Message.Attach="[Event SelectionChanged] = [Action SelectedPreferenceChanged($source)]" >
+                                  cal:Message.Attach="[Event SelectionChanged] = [Action GridSelectionChanged($source,'MustHave')]" 
+                                  SelectedIndex="{Binding MustHavesSelectedIndex}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Value" Binding="{Binding Value}"></DataGridTextColumn>
@@ -126,35 +156,29 @@
                         </DataGrid>
                     </Grid>
                 </GroupBox>
-                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0">
-                    <Button x:Name="AddSelectionToFavorites" Style="{StaticResource DialogButton}">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock>Add to Favorites</TextBlock>
-                            <fa:FontAwesome Icon="ArrowUp"/>
-                        </StackPanel>
-                    </Button>
-                    <Button x:Name="AddToIdontCare" Style="{StaticResource DialogButton}">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock>Add to 'I dont care'</TextBlock>
-                            <fa:FontAwesome Icon="ArrowDown"/>
-                        </StackPanel>
-                    </Button>
-                    <Button x:Name="AddToNeverUse" Style="{StaticResource DialogButton}">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock>Add to 'I dont care'</TextBlock>
-                            <fa:FontAwesome Icon="ArrowDown"/>
-                        </StackPanel>
-                    </Button>
-                    <Button x:Name="AddToMustHaves" Style="{StaticResource DialogButton}">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock>Add to 'MUST HAVES'</TextBlock>
-                            <fa:FontAwesome Icon="ArrowDown"/>
-                        </StackPanel>
-                    </Button>
-                </StackPanel>
-                <GroupBox Grid.Row="0" Grid.Column="1" Header="Must HAVES!!">
-                </GroupBox>
-                <GroupBox Grid.Row="2" Grid.Column="1" Header="NEVER use these!!">
+                <GroupBox Grid.Row="2" Grid.Column="1" Header="NEVER use these!! (No matter what happens. If roms have one of these, I never want them)" Background="OrangeRed">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0">
+                                <CheckBox IsChecked="{Binding IgnoreNeverUseForOneRom}">Ignore these settings if there is only one rom available for a game.</CheckBox>
+                        </TextBlock>
+                        <DataGrid x:Name="NeverUseGrid" ItemsSource="{Binding NeverUseItems}" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="1"
+                                  CanUserAddRows="false" CanUserDeleteRows="false" CanUserResizeRows="false" CanUserSortColumns="False"
+                                  cal:Message.Attach="[Event SelectionChanged] = [Action GridSelectionChanged($source,'NeverUse')]" 
+                                  SelectedIndex="{Binding NeverUseSelectedIndex}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Value" Binding="{Binding Value}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="System" Binding="{Binding System}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Type" Binding="{Binding Type}"></DataGridTextColumn>
+                                <!--<DataGridComboBoxColumn Header="Include" ItemsSource="{Binding Source={views:EnumBindingSource {x:Type constants:IncludeType}}}" SelectedItemBinding="{Binding Include}"></DataGridComboBoxColumn>-->
+                                <DataGridTextColumn Header="Description" Binding="{Binding Description}"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
                 </GroupBox>
             </Grid>
         </DockPanel>

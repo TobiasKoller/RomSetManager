@@ -15,4 +15,5 @@ namespace Model.Constants
         Rar = 5,
         Tar = 6
     }
+    
 }

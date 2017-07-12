@@ -21,9 +21,9 @@ namespace Configuration
                 var type = GetAttributeAsString(namePartNode, "type");
                 var description = GetAttributeAsString(namePartNode, "description");
                 var position = GetAttributeAsInt(namePartNode, "position",-1);
-                var include = GetAttributeAsString(namePartNode, "include");
+                var behaviour = GetAttributeAsString(namePartNode, "behaviour");
 
-                var namePart = new NamePart(name, value, system, type, description, position, include);
+                var namePart = new NamePart(name, value, system, type, description, position, behaviour);
                 preferences.NameParts.Add(namePart);
             }
 

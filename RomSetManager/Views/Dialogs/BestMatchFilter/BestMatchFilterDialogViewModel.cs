@@ -15,31 +15,70 @@ namespace RomSetManager.Views.Dialogs.BestMatchFilter
     {
         public bool? DialogResult { get; }
         
-        public ObservableCollection<NamePart> NamePartsIncluded { get; set; }
-        public ObservableCollection<NamePart> NamePartsExcluded { get; set; }
+        public ObservableCollection<NamePart> FavoriteItems { get; set; }
+        public ObservableCollection<NamePart> DontCareItems { get; set; }
+        public ObservableCollection<NamePart> MustHavesItems { get; set; }
+        public ObservableCollection<NamePart> NeverUseItems { get; set; }
 
-        public List<NamePart> CurrentSelectedIncludedNameParts { get; set; }
-        public List<NamePart> CurrentSelectedExcludedNameParts { get; set; }
+        public List<NamePart> CurrentSelectedFavoriteItems { get; set; }
+        public List<NamePart> CurrentSelectedDontCareItems { get; set; }
+        public List<NamePart> CurrentSelectedMustHaveItems { get; set; }
+        public List<NamePart> CurrentSelectedNeverUseItems { get; set; }
 
-        private int _preferencesIncludedSelectedIndex = -1;
-        public int PreferencesIncludedSelectedIndex
+
+
+        private int _favoriteSelectedIndex = -1;
+        private int _dontCareSelectedIndex = -1;
+        private int _mustHavesSelectedIndex = -1;
+        private int _neverUseSelectedIndex = -1;
+        public int FavoriteSelectedIndex
         {
-            get => _preferencesIncludedSelectedIndex;
-            set
-            {
-                _preferencesIncludedSelectedIndex = value;
-                NotifyOfPropertyChange(()=>PreferencesIncludedSelectedIndex);
-            }
+            get => _favoriteSelectedIndex;
+            set{ SetPropertyAndNotify(ref _favoriteSelectedIndex, value, ()=>FavoriteSelectedIndex);}
         }
+        public int DontCareSelectedIndex
+        {
+            get => _dontCareSelectedIndex;
+            set { SetPropertyAndNotify(ref _dontCareSelectedIndex, value, () => DontCareSelectedIndex); }
+        }
+        public int MustHavesSelectedIndex
+        {
+            get => _mustHavesSelectedIndex;
+            set { SetPropertyAndNotify(ref _mustHavesSelectedIndex, value, () => MustHavesSelectedIndex); }
+        }
+        public int NeverUseSelectedIndex
+        {
+            get => _neverUseSelectedIndex;
+            set { SetPropertyAndNotify(ref _neverUseSelectedIndex, value, () => NeverUseSelectedIndex); }
+        }
+
+        private bool _ignoreMustHaveForOneRom;
+        public bool IgnoreMustHaveForOneRom
+        {
+            get => _ignoreMustHaveForOneRom;
+            set{ SetPropertyAndNotify(ref _ignoreMustHaveForOneRom, value, ()=>IgnoreMustHaveForOneRom);}
+        }
+
+        private bool _ignoreNeverUseForOneRom;
+        public bool IgnoreNeverUseForOneRom
+        {
+            get => _ignoreNeverUseForOneRom;
+            set{ SetPropertyAndNotify(ref _ignoreNeverUseForOneRom,value,()=>IgnoreNeverUseForOneRom);}
+        }
+
 
         public BestMatchFilterDialogViewModel(string name, SimpleContainerEx container, IEventAggregator eventAggregator, INavigationServiceProvider navigationServiceProvider, 
             IServiceProvider serviceProvider) 
             : base(name, container, eventAggregator, navigationServiceProvider, Constants.FRAME_MAIN, serviceProvider)
         {
-            NamePartsIncluded = new ObservableCollection<NamePart>();
-            NamePartsExcluded = new ObservableCollection<NamePart>();
-            CurrentSelectedIncludedNameParts = new List<NamePart>();
-            CurrentSelectedExcludedNameParts = new List<NamePart>();
+            FavoriteItems = new ObservableCollection<NamePart>();
+            DontCareItems = new ObservableCollection<NamePart>();
+            MustHavesItems = new ObservableCollection<NamePart>();
+            NeverUseItems = new ObservableCollection<NamePart>();
+            CurrentSelectedFavoriteItems = new List<NamePart>();
+            CurrentSelectedDontCareItems = new List<NamePart>();
+            CurrentSelectedMustHaveItems = new List<NamePart>();
+            CurrentSelectedNeverUseItems = new List<NamePart>();
 
             Init();
         }
@@ -48,21 +87,15 @@ namespace RomSetManager.Views.Dialogs.BestMatchFilter
         {
             var config = ServiceProvider.ConfigurationService.GetConfiguration();
             
-            var includedPreferences = config.BestMatch.Preferences.NameParts.Where(n => n.Include == IncludeType.Yes).OrderBy(l => l.Position).ToList();
-            var excludedPreferences = config.BestMatch.Preferences.NameParts.Where(n => n.Include == IncludeType.No).OrderBy(l => l.Position).ToList();
+            var favoriteItems = config.BestMatch.Preferences.NameParts.Where(n => n.Behaviour == BehaviourType.Favorite).OrderBy(l => l.Position).ToList();
+            var dontCareItems = config.BestMatch.Preferences.NameParts.Where(n => n.Behaviour == BehaviourType.DontCare).OrderBy(l => l.Position).ToList();
+            var mustHavesItems = config.BestMatch.Preferences.NameParts.Where(n => n.Behaviour == BehaviourType.MustHave).OrderBy(l => l.Position).ToList();
+            var neverUseItems = config.BestMatch.Preferences.NameParts.Where(n => n.Behaviour == BehaviourType.NeverUse).OrderBy(l => l.Position).ToList();
 
-            InitNamePartList(NamePartsIncluded, includedPreferences);
-            InitNamePartList(NamePartsExcluded, excludedPreferences);
-
-
-            //NamePartsIncluded.Clear();
-            //NamePartsExcluded.Clear();
-
-            //foreach (var preference in includedPreferences)
-            //    NamePartsIncluded.Add(preference);
-
-            //foreach (var preference in excludedPreferences)
-            //    NamePartsExcluded.Add(preference);
+            InitNamePartList(FavoriteItems, favoriteItems);
+            InitNamePartList(DontCareItems, dontCareItems);
+            InitNamePartList(MustHavesItems, mustHavesItems);
+            InitNamePartList(NeverUseItems, neverUseItems);
         }
 
         private void InitNamePartList(ObservableCollection<NamePart> sourceList, List<NamePart> namePartList)

@@ -55,7 +55,7 @@ namespace Configuration
                 writer.WriteAttributeString("value", namePart.Value);
                 writer.WriteAttributeString("system", namePart.System);
                 writer.WriteAttributeString("type", namePart.Type.ToString());
-                writer.WriteAttributeString("include", namePart.Include.ToString());
+                writer.WriteAttributeString("behaviour", namePart.Behaviour.ToString());
                 writer.WriteAttributeString("position", namePart.Position.ToString());
                 writer.WriteAttributeString("description", namePart.Description);
                 writer.WriteEndElement(); //namepart
