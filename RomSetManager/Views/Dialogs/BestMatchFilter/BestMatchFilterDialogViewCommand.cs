@@ -180,43 +180,25 @@ namespace RomSetManager.Views.Dialogs.BestMatchFilter
             }
         }
 
+        public bool CanAddSelectedToDontCare => DontCareSelectedIndex == -1; //equals -1? than button can be enabled because its grid has no selection
         public void AddSelectedToDontCare()
         {
             MoveSelection(BehaviourType.DontCare);
-            
-
-            //var copy = CurrentSelectedFavoriteItems.ToList();
-
-            //foreach (var currentSelectedNamePart in copy)
-            //{
-            //    currentSelectedNamePart.Behaviour = BehaviourType.DontCare;
-            //    DontCareItems.Add(currentSelectedNamePart);
-            //    FavoriteItems.Remove(currentSelectedNamePart);
-            //}
         }
 
+        public bool CanAddSelectedToFavorite=> FavoriteSelectedIndex == -1;//equals -1? than button can be enabled because its grid has no selection
         public void AddSelectedToFavorite()
         {
             MoveSelection(BehaviourType.Favorite);
-            //var copy = CurrentSelectedDontCareItems.ToList();
-            //var pos = FavoriteItems.Max(n => n.Position);
-
-            //foreach (var currentSelectedNamePart in copy)
-            //{
-            //    pos++;
-            //    currentSelectedNamePart.Position = pos;
-            //    currentSelectedNamePart.Behaviour = BehaviourType.Favorite;
-            //    FavoriteItems.Add(currentSelectedNamePart);
-            //    DontCareItems.Remove(currentSelectedNamePart);
-
-            //}
         }
 
+        public bool CanAddSelectedToMustHaves => MustHavesSelectedIndex == -1;//equals -1? than button can be enabled because its grid has no selection
         public void AddSelectedToMustHaves()
         {
             MoveSelection(BehaviourType.MustHave);
         }
 
+        public bool CanAddSelectedToNeverUse=> NeverUseSelectedIndex == -1;//equals -1? than button can be enabled because its grid has no selection
         public void AddSelectedToNeverUse()
         {
             MoveSelection(BehaviourType.NeverUse);
@@ -229,10 +211,23 @@ namespace RomSetManager.Views.Dialogs.BestMatchFilter
             var config = service.GetConfiguration();
 
             var preferences = new Preferences();
-            foreach (var namePart in FavoriteItems)
-                preferences.NameParts.Add(namePart);
-            foreach (var namePart in DontCareItems)
-                preferences.NameParts.Add(namePart);
+            preferences.IgnoreMustHaveForOneRom = IgnoreMustHaveForOneRom;
+            preferences.IgnoreNeverUseForOneRom = IgnoreNeverUseForOneRom;
+
+            var list = new List<ObservableCollection<NamePart>> {FavoriteItems, DontCareItems, MustHavesItems, NeverUseItems};
+
+            foreach (var tmpList in list)
+            {
+                foreach (var namePart in tmpList)
+                {
+                    preferences.NameParts.Add(namePart);
+                }
+            }
+
+            //foreach (var namePart in FavoriteItems)
+            //    preferences.NameParts.Add(namePart);
+            //foreach (var namePart in DontCareItems)
+            //    preferences.NameParts.Add(namePart);
 
             config.BestMatch.Preferences = preferences;
             service.UpdateConfiguration(config);

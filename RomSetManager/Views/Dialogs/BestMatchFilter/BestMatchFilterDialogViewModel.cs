@@ -34,29 +34,46 @@ namespace RomSetManager.Views.Dialogs.BestMatchFilter
         public int FavoriteSelectedIndex
         {
             get => _favoriteSelectedIndex;
-            set{ SetPropertyAndNotify(ref _favoriteSelectedIndex, value, ()=>FavoriteSelectedIndex);}
+            set
+            {
+                SetPropertyAndNotify(ref _favoriteSelectedIndex, value, ()=>FavoriteSelectedIndex);
+                NotifyOfPropertyChange(() => CanAddSelectedToFavorite); //to enable/disable move-button
+            }
         }
         public int DontCareSelectedIndex
         {
             get => _dontCareSelectedIndex;
-            set { SetPropertyAndNotify(ref _dontCareSelectedIndex, value, () => DontCareSelectedIndex); }
+            set {
+                SetPropertyAndNotify(ref _dontCareSelectedIndex, value, () => DontCareSelectedIndex);
+                NotifyOfPropertyChange(()=>CanAddSelectedToDontCare); //to enable/disable move-button
+            }
         }
+
         public int MustHavesSelectedIndex
         {
             get => _mustHavesSelectedIndex;
-            set { SetPropertyAndNotify(ref _mustHavesSelectedIndex, value, () => MustHavesSelectedIndex); }
+            set
+            {
+                SetPropertyAndNotify(ref _mustHavesSelectedIndex, value, () => MustHavesSelectedIndex);
+                NotifyOfPropertyChange(() => CanAddSelectedToMustHaves); //to enable/disable move-button }
+            }
         }
+
         public int NeverUseSelectedIndex
         {
             get => _neverUseSelectedIndex;
-            set { SetPropertyAndNotify(ref _neverUseSelectedIndex, value, () => NeverUseSelectedIndex); }
+            set
+            {
+                SetPropertyAndNotify(ref _neverUseSelectedIndex, value, () => NeverUseSelectedIndex);
+                NotifyOfPropertyChange(() => CanAddSelectedToNeverUse); //to enable/disable move-button
+            }
         }
 
         private bool _ignoreMustHaveForOneRom;
         public bool IgnoreMustHaveForOneRom
         {
             get => _ignoreMustHaveForOneRom;
-            set{ SetPropertyAndNotify(ref _ignoreMustHaveForOneRom, value, ()=>IgnoreMustHaveForOneRom);}
+            set{SetPropertyAndNotify(ref _ignoreMustHaveForOneRom, value, ()=>IgnoreMustHaveForOneRom);}
         }
 
         private bool _ignoreNeverUseForOneRom;
@@ -86,11 +103,17 @@ namespace RomSetManager.Views.Dialogs.BestMatchFilter
         private void Init()
         {
             var config = ServiceProvider.ConfigurationService.GetConfiguration();
-            
-            var favoriteItems = config.BestMatch.Preferences.NameParts.Where(n => n.Behaviour == BehaviourType.Favorite).OrderBy(l => l.Position).ToList();
-            var dontCareItems = config.BestMatch.Preferences.NameParts.Where(n => n.Behaviour == BehaviourType.DontCare).OrderBy(l => l.Position).ToList();
-            var mustHavesItems = config.BestMatch.Preferences.NameParts.Where(n => n.Behaviour == BehaviourType.MustHave).OrderBy(l => l.Position).ToList();
-            var neverUseItems = config.BestMatch.Preferences.NameParts.Where(n => n.Behaviour == BehaviourType.NeverUse).OrderBy(l => l.Position).ToList();
+
+            var preferences = config.BestMatch.Preferences;
+            var nameParts = preferences.NameParts;
+
+            var favoriteItems = nameParts.Where(n => n.Behaviour == BehaviourType.Favorite).OrderBy(l => l.Position).ToList();
+            var dontCareItems = nameParts.Where(n => n.Behaviour == BehaviourType.DontCare).OrderBy(l => l.Position).ToList();
+            var mustHavesItems = nameParts.Where(n => n.Behaviour == BehaviourType.MustHave).OrderBy(l => l.Position).ToList();
+            var neverUseItems = nameParts.Where(n => n.Behaviour == BehaviourType.NeverUse).OrderBy(l => l.Position).ToList();
+
+            IgnoreMustHaveForOneRom = preferences.IgnoreMustHaveForOneRom;
+            IgnoreNeverUseForOneRom = preferences.IgnoreNeverUseForOneRom;
 
             InitNamePartList(FavoriteItems, favoriteItems);
             InitNamePartList(DontCareItems, dontCareItems);

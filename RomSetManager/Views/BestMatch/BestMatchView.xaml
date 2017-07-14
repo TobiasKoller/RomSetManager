@@ -5,6 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
       xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
+      xmlns:local="clr-namespace:RomSetManager.Views.BestMatch"
+      xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+
       mc:Ignorable="d" 
       d:DesignHeight="300"
       Title="BestMatchView" Background="White" d:DesignWidth="824">
@@ -22,8 +25,41 @@
             <Setter Property="Width" Value="100" />
             <Setter Property="Height" Value="30" />
         </Style>
-    </Page.Resources>
 
+        <!--<Style x:Key="GroupHeaderStyle" TargetType="{x:Type GroupItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type GroupItem}">
+                        <StackPanel>
+                            <TextBlock Text="{Binding System}"></TextBlock>
+                            <ItemsPresenter />
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>-->
+        <Style x:Key="GroupHeaderStyle" TargetType="{x:Type GroupItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type GroupItem}">
+                        <Expander IsExpanded="True">
+                            <Expander.Header>
+                                <TextBlock Text="{Binding Name}"/>
+                            </Expander.Header>
+                            <ItemsPresenter/>
+                        </Expander>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <CollectionViewSource x:Key="GroupedRomFiles" Source="{Binding RomFiles}">
+            <CollectionViewSource.GroupDescriptions>
+                <PropertyGroupDescription PropertyName="System"/>
+            </CollectionViewSource.GroupDescriptions>
+        </CollectionViewSource>
+    </Page.Resources>
+    
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
@@ -54,9 +90,21 @@
             <StackPanel Orientation="Horizontal" Grid.Row="0">
                 <Button x:Name="ReadSourceRomFiles" Style="{StaticResource CommonBtn}">Read Source-Rom Directory</Button>
             </StackPanel>
-            <DataGrid x:Name="BestMatchGrid" ItemsSource="{Binding RomFiles}" AutoGenerateColumns="False" Grid.Row="1"
-                      CanUserAddRows="false" CanUserDeleteRows="false" CanUserResizeRows="false" CanUserSortColumns="False">
-                <DataGrid.Columns>
+            <DataGrid x:Name="BestMatchGrid" ItemsSource="{Binding Source={StaticResource GroupedRomFiles}}" AutoGenerateColumns="False" Grid.Row="1"
+                      CanUserAddRows="false" CanUserDeleteRows="false" CanUserResizeRows="false" CanUserSortColumns="False"
+                      VirtualizingPanel.IsVirtualizingWhenGrouping="True" EnableRowVirtualization="True" EnableColumnVirtualization="True"
+                      >
+                <!--http://www.elegant-software.net/2014/05/performance-of-the-wpf-datagrid.html-->
+                    <DataGrid.GroupStyle>
+                        <GroupStyle ContainerStyle="{StaticResource GroupHeaderStyle}">
+                            <GroupStyle.Panel>
+                                <ItemsPanelTemplate>
+                                    <DataGridRowsPresenter />
+                                </ItemsPanelTemplate>
+                            </GroupStyle.Panel>
+                        </GroupStyle>
+                    </DataGrid.GroupStyle>
+                    <DataGrid.Columns>
                     <DataGridTextColumn Header="System" Binding="{Binding System}"></DataGridTextColumn>
                     <DataGridTextColumn Header="FileName" Binding="{Binding FileName}"></DataGridTextColumn>
                     <DataGridCheckBoxColumn Header="IsZipped" Binding="{Binding IsInCompressedFile}"></DataGridCheckBoxColumn>

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Forms;
 using Caliburn.Micro;
 using Microsoft.Win32;
@@ -72,6 +73,9 @@ namespace RomSetManager.Views.BestMatch
                     RomFiles.Add(romFile);
                 }
             }
+
+            //GroupedRomFiles.Clear();
+            //GroupedRomFiles.GroupDescriptions.Add(new PropertyGroupDescription("System"));
         }
 
         public void CloneDirectoryFromRetropie()

@@ -152,6 +152,11 @@ namespace Configuration
             return node != null && GetAsBoolean(node.InnerText);
         }
 
+        protected bool GetInnerTextAsBool(XmlNode node)
+        {
+            return node != null && GetAsBoolean(node.InnerText);
+        }
+
         private string GetAsString(string value)
         {
             return value ?? string.Empty;

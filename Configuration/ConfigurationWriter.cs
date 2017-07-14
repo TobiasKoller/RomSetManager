@@ -46,6 +46,15 @@ namespace Configuration
             writer.WriteEndElement(); //rom_destination_directory
 
             writer.WriteStartElement("preferences");
+
+            writer.WriteStartElement("ignore_musthaves_for_one_rom");
+            writer.WriteString(configuration.BestMatch.Preferences.IgnoreMustHaveForOneRom.ToString());
+            writer.WriteEndElement(); //ignore_musthaves_for_one_rom
+
+            writer.WriteStartElement("ignore_neveruse_for_one_rom");
+            writer.WriteString(configuration.BestMatch.Preferences.IgnoreNeverUseForOneRom.ToString());
+            writer.WriteEndElement(); //ignore_neveruse_for_one_rom
+
             writer.WriteStartElement("nameparts");
 
             foreach (var namePart in configuration.BestMatch.Preferences.NameParts.OrderBy(l => l.Position))

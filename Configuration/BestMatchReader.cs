@@ -11,7 +11,12 @@ namespace Configuration
             var bestMatch = new BestMatch();
             var nameParts = bestMatchNode.SelectNodes("//preferences/nameparts/namepart");
 
-            var preferences = new Preferences();
+            var preferences = new Preferences
+            {
+                IgnoreMustHaveForOneRom = GetInnerTextAsBool(bestMatchNode.SelectSingleNode("//preferences/ignore_musthaves_for_one_rom")),
+                IgnoreNeverUseForOneRom = GetInnerTextAsBool(bestMatchNode.SelectSingleNode("//preferences/ignore_neveruse_for_one_rom"))
+            };
+
 
             foreach (XmlNode namePartNode in nameParts)
             {

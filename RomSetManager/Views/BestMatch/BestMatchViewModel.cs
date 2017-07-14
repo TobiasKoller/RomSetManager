@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 using Caliburn.Micro;
 using Configuration;
 using Model;
@@ -21,6 +23,7 @@ namespace RomSetManager.Views.BestMatch
         public ObservableCollection<NamePart> FilterLanguages { get; set; }
         public ObservableCollection<RomFile> RomFiles { get; set; }
         private ConfigurationService _configurationService;
+        private ObservableCollection<ICollectionView> GroupedRomFiles { get; set; }
 
         private string _sourceDirectory, _destinationDirectory="";
 
@@ -47,7 +50,7 @@ namespace RomSetManager.Views.BestMatch
         {
             FilterLanguages = new ObservableCollection<NamePart>();
             RomFiles = new ObservableCollection<RomFile>();
-
+            
             _configurationService = ServiceProvider.ConfigurationService;
             Init();
         }
