@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BestMatchReader.cs" />
     <Compile Include="ConfigurationReader.cs" />
     <Compile Include="ConfigurationWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

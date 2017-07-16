@@ -8,7 +8,7 @@
         xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
         Title="TKO.RomSetManager" Height="800" Width="1000" BorderThickness="1"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" WindowState="Maximized">
     
     <Grid>
         <Frame x:Name="RootFrame" cal:Message.Attach="[Event Loaded] = [Init($source)]" Margin="10"></Frame>

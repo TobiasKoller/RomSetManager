@@ -210,9 +210,11 @@ namespace RomSetManager.Views.Dialogs.BestMatchFilter
             var service = ServiceProvider.ConfigurationService;
             var config = service.GetConfiguration();
 
-            var preferences = new Preferences();
-            preferences.IgnoreMustHaveForOneRom = IgnoreMustHaveForOneRom;
-            preferences.IgnoreNeverUseForOneRom = IgnoreNeverUseForOneRom;
+            var preferences = new Preferences
+            {
+                IgnoreMustHaveForOneRom = IgnoreMustHaveForOneRom,
+                IgnoreNeverUseForOneRom = IgnoreNeverUseForOneRom
+            };
 
             var list = new List<ObservableCollection<NamePart>> {FavoriteItems, DontCareItems, MustHavesItems, NeverUseItems};
 
@@ -230,6 +232,7 @@ namespace RomSetManager.Views.Dialogs.BestMatchFilter
             //    preferences.NameParts.Add(namePart);
 
             config.BestMatch.Preferences = preferences;
+
             service.UpdateConfiguration(config);
 
             TryClose(true);

@@ -52,30 +52,27 @@ namespace RomSetManager.Views.BestMatch
 
         public void ReadSourceRomFiles()
         {
+            //todo configuration.xml vervollständigen. ?? als genaue platzhalter oder als zahlenplatzhalter?
+            
+            var config = _configurationService.GetConfiguration();
+            _romFileWorker.Configuration = config;
+
+            var romFiles = _romFileWorker.GetRomFiles();
+            SetRomList(romFiles);
+        }
+
+        /// <summary>
+        /// clears the grid and adds the given romfiles
+        /// </summary>
+        /// <param name="romFiles"></param>
+        private void SetRomList(List<RomFile> romFiles)
+        {
             RomFiles.Clear();
 
-            var files = Directory.GetFiles(SourceDirectory, "*.*", SearchOption.AllDirectories);
-
-
-            var reader = new RomFileReader();
-            
-            var ext = new List<string>
+            foreach (var romFile in romFiles)
             {
-                "log","txt"
-            };
-
-            foreach (var file in files.Where(f => ext.All(e => !f.ToLower().EndsWith(e.ToLower()))))
-            {
-                var romFiles = reader.Read(file);
-
-                foreach (var romFile in romFiles)
-                {
-                    RomFiles.Add(romFile);
-                }
+                RomFiles.Add(romFile);
             }
-
-            //GroupedRomFiles.Clear();
-            //GroupedRomFiles.GroupDescriptions.Add(new PropertyGroupDescription("System"));
         }
 
         public void CloneDirectoryFromRetropie()
@@ -106,6 +103,13 @@ namespace RomSetManager.Views.BestMatch
                 target.CreateSubdirectory(directory.Name);
             }
             
+        }
+
+        public void TestWipeFileNames()
+        {
+            var list = RomFiles.ToList();
+            _romFileWorker.TestWipeFileNames(list);
+            SetRomList(list);
         }
 
         //private void DeepCopy(DirectoryInfo source, DirectoryInfo target)

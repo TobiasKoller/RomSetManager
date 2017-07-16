@@ -27,13 +27,15 @@ namespace Configuration
             using (XmlWriter writer = XmlWriter.Create(configFile, settings))
             {
                 writer.WriteStartElement("configuration");
-                BuildBestMatch(writer, configuration);
+                WriteBestMatch(writer, configuration);
+                WriteSystems(writer, configuration);
+
                 writer.WriteEndElement(); //configuration
             }
 
         }
 
-        private void BuildBestMatch(XmlWriter writer, Model.Configuration configuration)
+        private void WriteBestMatch(XmlWriter writer, Model.Configuration configuration)
         {
             writer.WriteStartElement("bestmatch");
 
@@ -73,6 +75,23 @@ namespace Configuration
             writer.WriteEndElement(); //preferences
 
             writer.WriteEndElement(); //BestMatch
+        }
+
+        private void WriteSystems(XmlWriter writer, Model.Configuration configuration)
+        {
+            writer.WriteStartElement("systems");
+
+            foreach (var configurationSystem in configuration.Systems)
+            {
+                writer.WriteStartElement("system");
+
+                writer.WriteAttributeString("name",configurationSystem.Name);
+                writer.WriteAttributeString("keep_compressed", configurationSystem.KeepCompressed.ToString());
+
+                writer.WriteEndElement(); //system
+            }
+
+            writer.WriteEndElement(); //systems
         }
     }
 }

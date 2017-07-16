@@ -15,3 +15,6 @@
 /Configuration/bin/Debug
 /Model/bin/Debug
 /Model/obj/Debug
+/Testrunner
+/Testrunner/bin/Debug
+/Testrunner/obj/Debug

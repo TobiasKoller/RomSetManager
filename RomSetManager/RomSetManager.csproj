@@ -82,8 +82,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="IoC\SimpleContainerEx.cs" />
-    <Compile Include="RomFileReader.cs" />
-    <Compile Include="Services\BestMatchService.cs" />
+    <Compile Include="Worker\RomFileWorker.cs" />
     <Compile Include="Services\ConfigurationService.cs" />
     <Compile Include="Views\Dialogs\BestMatchFilter\BestMatchFilterDialogView.xaml.cs">
       <DependentUpon>BestMatchFilterDialogView.xaml</DependentUpon>

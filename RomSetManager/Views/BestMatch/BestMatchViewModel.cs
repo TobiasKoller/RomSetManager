@@ -14,6 +14,7 @@ using RomSetManager.IoC;
 using RomSetManager.Navigation;
 using RomSetManager.Services;
 using RomSetManager.Strings;
+using RomSetManager.Worker;
 using IServiceProvider = RomSetManager.Services.IServiceProvider;
 
 namespace RomSetManager.Views.BestMatch
@@ -24,6 +25,7 @@ namespace RomSetManager.Views.BestMatch
         public ObservableCollection<RomFile> RomFiles { get; set; }
         private ConfigurationService _configurationService;
         private ObservableCollection<ICollectionView> GroupedRomFiles { get; set; }
+        private RomFileWorker _romFileWorker;
 
         private string _sourceDirectory, _destinationDirectory="";
 
@@ -52,6 +54,7 @@ namespace RomSetManager.Views.BestMatch
             RomFiles = new ObservableCollection<RomFile>();
             
             _configurationService = ServiceProvider.ConfigurationService;
+
             Init();
         }
 
@@ -60,6 +63,7 @@ namespace RomSetManager.Views.BestMatch
             var service = ServiceProvider.ConfigurationService;
             var config = service.GetConfiguration();
 
+            _romFileWorker = new RomFileWorker(config);
             SourceDirectory = config.BestMatch.RomSourceDirectory;
             DestinationDirectory = config.BestMatch.RomDestinationDirectory;
         }

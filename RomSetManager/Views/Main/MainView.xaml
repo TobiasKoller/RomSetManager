@@ -11,10 +11,10 @@
       Title="MainView">
 
     <Page.Resources>
-        <Style x:Key="TitleStyle" TargetType="TextBlock">
+        <Style x:Key="TitleStyle" TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
             <Setter Property="FontWeight" Value="Bold"></Setter>
         </Style>
-        <Style x:Key="MenuButton" TargetType="Button">
+        <Style x:Key="MenuButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
             <Setter Property="Margin" Value="5 0 0 0"></Setter>
             <Setter Property="Width" Value="70"></Setter>
         </Style>
