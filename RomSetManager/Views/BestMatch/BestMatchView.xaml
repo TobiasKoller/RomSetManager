@@ -24,6 +24,7 @@
         </Style>
         <Style TargetType="Button" x:Key="ActionBtn" BasedOn="{StaticResource {x:Type Button}}">
             <Setter Property="Margin" Value="5 0 0 0" />
+            <Setter Property="Height" Value="30" />
         </Style>
     </Page.Resources>
 
@@ -34,7 +35,7 @@
             <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <GroupBox Header="Choose your directories" Grid.Row="0">
+        <GroupBox Header="1. Choose your directories" Grid.Row="0" Background="OrangeRed" BorderBrush="OrangeRed">
             <StackPanel Orientation="Vertical" Margin="5">
 
                 <StackPanel Orientation="Horizontal" Height="25" Margin="0 0 0 3">
@@ -50,14 +51,13 @@
                 </StackPanel>
             </StackPanel>
         </GroupBox>
-        <GroupBox Header="Actions" Grid.Row="1" Background="GreenYellow">
+        <GroupBox Header="2. Set your preferences" Grid.Row="1">
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="EditPreferences" Style="{StaticResource ActionBtn}">Edit Preferences</Button>
-                <Button x:Name="ReadSourceRomFiles" Style="{StaticResource ActionBtn}">Read Source-Rom Directory</Button>
-                <Button x:Name="TestWipeFileNames" Style="{StaticResource ActionBtn}">Test Wipe File-Names</Button>
             </StackPanel>
+            
         </GroupBox>
-        <Border BorderBrush="GreenYellow" BorderThickness="2" Grid.Row="2" >
+        <GroupBox Header="3. Actions" Grid.Row="2" Background="GreenYellow" BorderBrush="GreenYellow">
             <Grid>
                 <Grid.Resources>
                     <CollectionViewSource x:Key="RomFilesCvs" Source="{Binding RomFiles}">
@@ -69,11 +69,15 @@
                 </Grid.Resources>
 
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="40"></RowDefinition>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-
-                <DataGrid x:Name="BestMatchGrid" ItemsSource="{Binding Source={StaticResource RomFilesCvs}}" AutoGenerateColumns="False" Grid.Row="0"
+                <StackPanel Orientation="Horizontal" Grid.Row="0">
+                    <Button x:Name="ReadSourceRomFiles" Style="{StaticResource ActionBtn}">1. Read Source-Rom Directory</Button>
+                    <Button x:Name="TestWipeFileNames" Style="{StaticResource ActionBtn}">2. Test Wipe File-Names</Button>
+                </StackPanel>
+                <DataGrid x:Name="BestMatchGrid" ItemsSource="{Binding Source={StaticResource RomFilesCvs}}" AutoGenerateColumns="False" Grid.Row="1"
                           CanUserAddRows="false" CanUserDeleteRows="false" CanUserResizeRows="false" CanUserSortColumns="true" VirtualizingStackPanel.IsVirtualizing="True">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="System" Binding="{Binding System}" ></DataGridTextColumn>
@@ -84,7 +88,7 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
-        </Border>
-        
+        </GroupBox>
+
     </Grid>
 </Page>

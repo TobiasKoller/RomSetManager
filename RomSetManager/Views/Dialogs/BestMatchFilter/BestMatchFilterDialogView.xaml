@@ -15,7 +15,7 @@
                       Height="{Binding SystemParameters.PrimaryScreenHeight}" 
                       Width="{Binding SystemParameters.PrimaryScreenWidth}"
              d:DesignHeight="800" d:DesignWidth="800"
-                      BorderThickness="0" 
+                      BorderThickness="3" 
                       GlowBrush="Black"
                       ResizeMode="CanResizeWithGrip"
                       WindowTransitionsEnabled="False"
