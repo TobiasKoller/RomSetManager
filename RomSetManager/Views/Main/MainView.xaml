@@ -26,13 +26,13 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="0">
-            <Button x:Name="OpenSettings" Style="{StaticResource MenuButton}"
+            <!--<Button x:Name="OpenSettings" Style="{StaticResource MenuButton}"
                     ToolTip="Settings">
                 <StackPanel>
                     <fa:ImageAwesome Icon="Cogs" Width="25" />
                     <TextBlock>Settings</TextBlock>
                 </StackPanel>
-            </Button>
+            </Button>-->
             <Button x:Name="NavigateToBestMatchView" Style="{StaticResource MenuButton}"
                     ToolTip="Use this to find the best Matched Roms filtered by the special chars [!],(U),(J)....">
                 <StackPanel>
