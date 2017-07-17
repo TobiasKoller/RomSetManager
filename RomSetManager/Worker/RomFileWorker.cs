@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -10,6 +12,7 @@ using SharpCompress.Archives.Rar;
 using SharpCompress.Archives.SevenZip;
 using SharpCompress.Archives.Tar;
 using SharpCompress.Archives.Zip;
+using SharpCompress.Readers;
 
 namespace RomSetManager.Worker
 {
@@ -158,13 +161,11 @@ namespace RomSetManager.Worker
 
         }
 
-        private List<string> GetWipeParts(string system, string fileName)
+        private List<string> GetWipeParts(string system, string fileName, List<NamePart> nameParts)
         {
             var list = new List<string>();
            
-
-
-            foreach (var part in Configuration.BestMatch.Preferences.NameParts.Where(n => IsValidSystem(system, n.System)))
+            foreach (var part in nameParts.Where(n => IsValidSystem(system, n.System)))
             {
                 var parts = part.Value.Split(','); //split if multiple values
                 foreach (var tmpPart in parts.Select(p => p.Trim()))
@@ -206,30 +207,124 @@ namespace RomSetManager.Worker
             return Regex.Matches(wipedName, pattern).Count;
         }
 
-        public void TestWipeFileNames(List<RomFile> romFiles)
+        public List<RomFile> WipeFileNames(List<RomFile> romFiles)
         {
             foreach (var romFile in romFiles)
             {
-                if (romFile.FileName.Contains("(MD Bundle)"))
-                {
-                    
-                }
-
-                var parts = GetWipeParts(romFile.System, romFile.FileName);
+                romFile.Export = false; //reset to false because it will set to true below (if match)
+                var parts = GetWipeParts(romFile.System, romFile.FileName, Configuration.BestMatch.Preferences.NameParts);
                 var wipedName = romFile.FileName;
-                
-                if (parts.Count <= 0)
-                    continue;
 
-                foreach (var part in parts.Where(p => p.Length>0))
+                if (parts.Count >0)
                 {
-                    wipedName = wipedName.Replace(part, "");
+                    foreach (var part in parts.Where(p => p.Length > 0))
+                    {
+                        wipedName = wipedName.Replace(part, "");
+                    }
                 }
+
                 wipedName = Regex.Replace(wipedName, @"\s+", " "); //replacing multiple whitespaces
                 wipedName = wipedName.Replace(" .", ".");//in case there is an space before the dot.
                 romFile.FileNameWiped = wipedName;
                 romFile.WipedPartsCounter = parts.Count;
                 romFile.NotWipedPartsCounter = NumberOfBraketValues(wipedName);
+            }
+
+
+            FilterByPreferences(romFiles);
+
+            return romFiles;
+        }
+
+        private void FilterByPreferences(List<RomFile> romFiles)
+        {
+            var nameParts = Configuration.BestMatch.Preferences.NameParts;
+            var favorite = nameParts.Where(n => n.Behaviour == BehaviourType.Favorite).OrderBy(n => n.Position).ToList();
+            var mustHaves = nameParts.Where(n => n.Behaviour == BehaviourType.MustHave).ToList();
+            var neverUse = nameParts.Where(n => n.Behaviour == BehaviourType.NeverUse).ToList();
+            var dontCare = nameParts.Where(n => n.Behaviour == BehaviourType.DontCare).ToList();
+
+            var filtered = new List<RomFile>();
+
+            foreach (var romFile in romFiles)
+            {
+                if (mustHaves.Count > 0 && !GetWipeParts(romFile.System, romFile.FileName, mustHaves).Any()) //no mustHave-part found? continue with next rom.
+                    continue;
+
+                if (neverUse.Count > 0 && GetWipeParts(romFile.System, romFile.FileName, neverUse).Any()) //any neveruse-part found? continue with next rom.
+                    continue;
+
+                filtered.Add(romFile);
+            }
+
+            var result = new List<RomFile>();
+
+            var fileNames = filtered.Select(f => Path.GetFileNameWithoutExtension(f.FileNameWiped)).Distinct().OrderBy(f => f).ToList();
+            foreach (var fileName in fileNames)
+            {
+                var roms = filtered.Where(f => Path.GetFileNameWithoutExtension(f.FileNameWiped) == fileName).ToList();
+
+                var prevRoms = roms.ToList();
+                if (roms.Count > 1)
+                {
+                    foreach (var namePart in favorite)
+                    {
+                        roms.RemoveAll(r => !GetWipeParts(r.System, r.FileName, new List<NamePart> {namePart}).Any());
+                        if (roms.Count ==0)
+                            break;
+
+                        prevRoms = roms.ToList();
+                        if (roms.Count == 1)
+                            break;
+                    }
+                }
+               
+
+                var winner = prevRoms.First();
+                winner.Export = true;
+            }
+        }
+
+
+
+        public void Export(List<RomFile> romFiles)
+        {
+            var outDir = Configuration.BestMatch.RomDestinationDirectory;
+
+            foreach (var romFile in romFiles)
+            {
+                try
+                {
+                    var dir = Path.Combine(outDir, romFile.System);
+                    if (!Directory.Exists(dir))
+                        Directory.CreateDirectory(dir);
+
+                    var destFile = Path.Combine(dir, romFile.FileNameWiped);
+                    var configSystem = Configuration.Systems.First(s => s.Name == romFile.System);
+
+                    if (romFile.IsInCompressedFile && configSystem.KeepCompressed==false)
+                    {
+                        var compressionType = GetCompressionType(romFile.SourceFile);
+                        var archiveReader = GetArchiveReader(compressionType, romFile.SourceFile);
+
+                        var file = archiveReader.Entries.FirstOrDefault(e => e.Key == romFile.FileName);
+                        if (file == null)
+                            continue;
+
+                        file.WriteToFile(destFile,new ExtractionOptions{Overwrite = true});
+
+                    }
+                    else
+                    {
+                        File.Copy(romFile.SourceFile, destFile);
+                    }
+                }
+                catch (Exception exception)
+                {
+                    
+                }
+
+                
             }
         }
     }

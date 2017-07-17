@@ -12,6 +12,7 @@ namespace Model
         public string FileName { get; set; }
         public string FileNameWiped { get; set; }
         public bool IsInCompressedFile { get; set; }
+        public bool Export { get; set; }
         /// <summary>
         /// Number of Parts that wiped out of the name like [!],(b),...
         /// </summary>
@@ -25,6 +26,7 @@ namespace Model
         {
             WipedPartsCounter = 0;
             NotWipedPartsCounter = 0;
+            FileNameWiped = string.Empty;
         }
     }
 }

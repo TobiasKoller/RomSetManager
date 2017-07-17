@@ -72,6 +72,7 @@ namespace Configuration
                 writer.WriteEndElement(); //namepart
             }
 
+            writer.WriteEndElement(); //nameparts
             writer.WriteEndElement(); //preferences
 
             writer.WriteEndElement(); //BestMatch

@@ -26,6 +26,7 @@
             <Setter Property="Margin" Value="5 0 0 0" />
             <Setter Property="Height" Value="30" />
         </Style>
+        
     </Page.Resources>
 
 
@@ -64,6 +65,7 @@
                         <CollectionViewSource.SortDescriptions>
                             <componentModel:SortDescription PropertyName="System"/>
                             <componentModel:SortDescription PropertyName="FileName"/>
+                            <componentModel:SortDescription PropertyName="Export" Direction="Descending"/>
                         </CollectionViewSource.SortDescriptions>
                     </CollectionViewSource>
                 </Grid.Resources>
@@ -75,16 +77,33 @@
 
                 <StackPanel Orientation="Horizontal" Grid.Row="0">
                     <Button x:Name="ReadSourceRomFiles" Style="{StaticResource ActionBtn}">1. Read Source-Rom Directory</Button>
-                    <Button x:Name="TestWipeFileNames" Style="{StaticResource ActionBtn}">2. Test Wipe File-Names</Button>
+                    <Button x:Name="WipeFileNames" Style="{StaticResource ActionBtn}">2. Test Wipe File-Names</Button>
+                    <Button x:Name="Export" Style="{StaticResource ActionBtn}">3. Export</Button>
                 </StackPanel>
                 <DataGrid x:Name="BestMatchGrid" ItemsSource="{Binding Source={StaticResource RomFilesCvs}}" AutoGenerateColumns="False" Grid.Row="1"
                           CanUserAddRows="false" CanUserDeleteRows="false" CanUserResizeRows="false" CanUserSortColumns="true" VirtualizingStackPanel.IsVirtualizing="True">
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=Export}" Value="True">
+                                    <Setter Property="Background" Value="GreenYellow" />
+                                </DataTrigger >
+                                <DataTrigger Binding="{Binding Path=Export}" Value="False">
+                                    <Setter Property="Background" Value="LightGray" />
+                                </DataTrigger >
+                                <DataTrigger Binding="{Binding Path=FileNameWiped}" Value="">
+                                    <Setter Property="Background" Value="White" />
+                                </DataTrigger >
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="System" Binding="{Binding System}" ></DataGridTextColumn>
                         <DataGridTextColumn Header="Orig. File Name" Binding="{Binding FileName}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Wiped File Name" Binding="{Binding FileNameWiped}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Wiped Parts Count" Binding="{Binding WipedPartsCounter}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Unknown Parts" Binding="{Binding NotWipedPartsCounter}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Export" Binding="{Binding Export}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>

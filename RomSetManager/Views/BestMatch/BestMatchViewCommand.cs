@@ -12,6 +12,7 @@ using Microsoft.Win32;
 using Model;
 using RomSetManager.Views.Dialogs;
 using RomSetManager.Views.Dialogs.BestMatchFilter;
+using Configuration = Model.Configuration;
 using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace RomSetManager.Views.BestMatch
@@ -50,16 +51,7 @@ namespace RomSetManager.Views.BestMatch
             _configurationService.UpdateConfiguration(config);
         }
 
-        public void ReadSourceRomFiles()
-        {
-            //todo configuration.xml vervollständigen. ?? als genaue platzhalter oder als zahlenplatzhalter?
-            
-            var config = _configurationService.GetConfiguration();
-            _romFileWorker.Configuration = config;
 
-            var romFiles = _romFileWorker.GetRomFiles();
-            SetRomList(romFiles);
-        }
 
         /// <summary>
         /// clears the grid and adds the given romfiles
@@ -105,13 +97,37 @@ namespace RomSetManager.Views.BestMatch
             
         }
 
-        public void TestWipeFileNames()
+        #region 3. Actions
+
+        public void ReadSourceRomFiles()
         {
-            var list = RomFiles.ToList();
-            _romFileWorker.TestWipeFileNames(list);
-            SetRomList(list);
+            var config = _configurationService.GetConfiguration();
+            _romFileWorker.Configuration = config;
+
+            var romFiles = _romFileWorker.GetRomFiles();
+            SetRomList(romFiles);
+
+            NotifyOfPropertyChange(()=>CanWipeFileNames);
         }
 
+        public bool CanWipeFileNames => RomFiles.Count > 0;
+        public void WipeFileNames()
+        {
+            var config = _configurationService.GetConfiguration();
+            _romFileWorker.Configuration = config;
+
+            var list = _romFileWorker.WipeFileNames(RomFiles.ToList());
+            SetRomList(list);
+            NotifyOfPropertyChange(()=>CanExport);
+        }
+
+        public bool CanExport => RomFiles.Any(r => r.Export);
+        public void Export()
+        {
+            _romFileWorker.Export(RomFiles.Where(r => r.Export).ToList());
+        }
+
+        #endregion
         //private void DeepCopy(DirectoryInfo source, DirectoryInfo target)
         //{
 

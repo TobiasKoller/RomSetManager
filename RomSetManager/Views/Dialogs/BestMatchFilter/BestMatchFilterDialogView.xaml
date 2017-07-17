@@ -96,7 +96,7 @@
                 <GroupBox Header="I don't care (You don't care about these items if they appear in the rom-names or not)" Grid.Row="2" Grid.Column="0" Background="LightGray">
                     <DockPanel>
                         <DataGrid x:Name="DontCareGrid" ItemsSource="{Binding DontCareItems}" AutoGenerateColumns="False"
-                                  CanUserAddRows="false" CanUserDeleteRows="false" CanUserResizeRows="false" CanUserSortColumns="False"
+                                  CanUserAddRows="false" CanUserDeleteRows="false" CanUserResizeRows="false" CanUserSortColumns="True"
                                   cal:Message.Attach="[Event SelectionChanged] = [Action GridSelectionChanged($source,'DontCare')]"
                                   SelectedIndex="{Binding DontCareSelectedIndex}">
                             <DataGrid.Columns>
@@ -142,7 +142,7 @@
                                 <CheckBox IsChecked="{Binding IgnoreMustHaveForOneRom}">Ignore these settings if there is only one rom available for a game.</CheckBox>
                         </TextBlock>
                         <DataGrid x:Name="MustHaveGrid" ItemsSource="{Binding MustHavesItems}" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="1"
-                                  CanUserAddRows="false" CanUserDeleteRows="false" CanUserResizeRows="false" CanUserSortColumns="False"
+                                  CanUserAddRows="false" CanUserDeleteRows="false" CanUserResizeRows="false" CanUserSortColumns="True"
                                   cal:Message.Attach="[Event SelectionChanged] = [Action GridSelectionChanged($source,'MustHave')]" 
                                   SelectedIndex="{Binding MustHavesSelectedIndex}">
                             <DataGrid.Columns>
@@ -166,7 +166,7 @@
                                 <CheckBox IsChecked="{Binding IgnoreNeverUseForOneRom}">Ignore these settings if there is only one rom available for a game.</CheckBox>
                         </TextBlock>
                         <DataGrid x:Name="NeverUseGrid" ItemsSource="{Binding NeverUseItems}" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="1"
-                                  CanUserAddRows="false" CanUserDeleteRows="false" CanUserResizeRows="false" CanUserSortColumns="False"
+                                  CanUserAddRows="false" CanUserDeleteRows="false" CanUserResizeRows="false" CanUserSortColumns="True"
                                   cal:Message.Attach="[Event SelectionChanged] = [Action GridSelectionChanged($source,'NeverUse')]" 
                                   SelectedIndex="{Binding NeverUseSelectedIndex}">
                             <DataGrid.Columns>

@@ -39,11 +39,7 @@ namespace RomSetManager.Views.BestMatch
         public string DestinationDirectory
         {
             get => _destinationDirectory;
-            set
-            {
-                _destinationDirectory = value;
-                NotifyOfPropertyChange(() => DestinationDirectory);
-            }
+            set{SetPropertyAndNotify(ref _destinationDirectory, value,()=>DestinationDirectory);}
         }
 
         public BestMatchViewModel(string name, SimpleContainerEx container, IEventAggregator eventAggregator, INavigationServiceProvider navigationServiceProvider, 
