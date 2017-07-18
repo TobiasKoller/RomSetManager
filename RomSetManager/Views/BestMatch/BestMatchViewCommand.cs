@@ -22,6 +22,8 @@ namespace RomSetManager.Views.BestMatch
 {
     public partial class BestMatchViewModel
     {
+        private BackgroundWorker _currentBackgroundWorker;
+
         public void EditPreferences()
         {
             var dialogViewModel = Container.GetInstance<BestMatchFilterDialogViewModel>();
@@ -109,6 +111,7 @@ namespace RomSetManager.Views.BestMatch
         {
             var config = _configurationService.GetConfiguration();
             var romFileWorker = new RomFileWorker(config);
+            _currentBackgroundWorker = romFileWorker.BackgroundWorker;
 
             romFileWorker.BackgroundWorker.ProgressChanged += (sender, args) =>
             {
@@ -116,10 +119,13 @@ namespace RomSetManager.Views.BestMatch
             };
             romFileWorker.BackgroundWorker.RunWorkerCompleted += (sender, args) =>
             {
-                var romFiles = (List<RomFile>) args.Result;
-                SetRomList(romFiles);
+                if (!args.Cancelled)
+                {
+                    var romFiles = (List<RomFile>) args.Result;
+                    SetRomList(romFiles);
 
-                NotifyOfPropertyChange(() => CanWipeFileNames);
+                    NotifyOfPropertyChange(() => CanWipeFileNames);
+                }
                 HideLoadScreen();
             };
 
@@ -132,6 +138,7 @@ namespace RomSetManager.Views.BestMatch
         {
             var config = _configurationService.GetConfiguration();
             var romFileWorker = new RomFileWorker(config);
+            _currentBackgroundWorker = romFileWorker.BackgroundWorker;
 
             romFileWorker.BackgroundWorker.ProgressChanged += (sender, args) =>
             {
@@ -139,9 +146,13 @@ namespace RomSetManager.Views.BestMatch
             };
             romFileWorker.BackgroundWorker.RunWorkerCompleted += (sender, args) =>
             {
-                var romFiles = (List<RomFile>) args.Result;
-                SetRomList(romFiles);
-                NotifyOfPropertyChange(() => CanExport);
+                if (!args.Cancelled)
+                {
+                    var romFiles = (List<RomFile>)args.Result;
+                    SetRomList(romFiles);
+                    NotifyOfPropertyChange(() => CanExport);
+                }
+               
                 HideLoadScreen();
             };
 
@@ -155,6 +166,7 @@ namespace RomSetManager.Views.BestMatch
         {
             var config = _configurationService.GetConfiguration();
             var romFileWorker = new RomFileWorker(config);
+            _currentBackgroundWorker = romFileWorker.BackgroundWorker;
 
             romFileWorker.BackgroundWorker.ProgressChanged += (sender, args) =>
             {
@@ -169,6 +181,14 @@ namespace RomSetManager.Views.BestMatch
             romFileWorker.Export(RomFiles.Where(r => r.Export).ToList());
         }
 
+        #endregion
+
+        #region loadscreen
+
+        public void CancelProgress()
+        {
+            _currentBackgroundWorker.CancelAsync();
+        }
         #endregion
         //private void DeepCopy(DirectoryInfo source, DirectoryInfo target)
         //{

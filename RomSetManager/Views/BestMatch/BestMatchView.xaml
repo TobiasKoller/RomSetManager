@@ -8,6 +8,7 @@
       xmlns:local="clr-namespace:RomSetManager.Views.BestMatch"
       xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
       xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
 
       mc:Ignorable="d" 
       d:DesignHeight="400"
@@ -36,10 +37,11 @@
             <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <!-- ******* loadscreen *******-->
         <Grid Grid.Row="0" Grid.RowSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ZIndex="1000" Visibility="{Binding LoadScreenVisibility}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="150" />
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -48,13 +50,21 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3" Background="Gray" Opacity=".3"></StackPanel>
-            <StackPanel Grid.Row="1" Grid.Column="1" Background="White">
+            <Border BorderBrush="OrangeRed" Grid.Row="1" Grid.Column="1" BorderThickness="3" Background="White"></Border>
+            <StackPanel Grid.Row="1" Grid.Column="1" Background="White"  Height="auto" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10">
                 <TextBlock Text="{Binding LoadScreenText}"></TextBlock>
-                <ProgressBar Value="{Binding LoadScreenProgress}"></ProgressBar>
+                <controls:MetroProgressBar  Value="{Binding LoadScreenProgress}" Height="15" Foreground="OrangeRed"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" Grid.Row="1" Grid.Column="1">
+                <Button Height="20" Margin="10" VerticalAlignment="Top" HorizontalAlignment="Right" x:Name="CancelProgress">
+                    <fa:ImageAwesome Icon="TimesRectangle" Foreground="OrangeRed" />
+                </Button>
+                
+
             </StackPanel>
         </Grid>
-        
-        <GroupBox Header="1. Choose your directories" Grid.Row="0" Background="OrangeRed" BorderBrush="OrangeRed">
+        <!-- **************************** -->
+        <GroupBox Header="1. Choose your directories" Grid.Row="0" Background="Orange" BorderBrush="Orange">
             <StackPanel Orientation="Vertical" Margin="5">
 
                 <StackPanel Orientation="Horizontal" Height="25" Margin="0 0 0 3">
@@ -76,7 +86,7 @@
             </StackPanel>
 
         </GroupBox>
-        <GroupBox Header="3. Actions" Grid.Row="2" Background="GreenYellow" BorderBrush="GreenYellow">
+        <GroupBox Header="3. Actions" Grid.Row="2" Background="OrangeRed" BorderBrush="OrangeRed">
             <Grid>
                 <Grid.Resources>
                     <CollectionViewSource x:Key="RomFilesCvs" Source="{Binding RomFiles}">
@@ -107,7 +117,9 @@
                         <Style TargetType="DataGridRow">
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding Path=Export}" Value="True">
-                                    <Setter Property="Background" Value="GreenYellow" />
+                                    <!--<Setter Property="Background" Value="Goldenrod" />-->
+                                    <Setter Property="BorderBrush" Value="OrangeRed" ></Setter>
+                                    <Setter Property="BorderThickness" Value="2" ></Setter>
                                 </DataTrigger >
                                 <DataTrigger Binding="{Binding Path=Export}" Value="False">
                                     <Setter Property="Background" Value="LightGray" />

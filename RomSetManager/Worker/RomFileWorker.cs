@@ -27,7 +27,8 @@ namespace RomSetManager.Worker
             Configuration = configuration;
             BackgroundWorker = new BackgroundWorker
             {
-                WorkerReportsProgress = true
+                WorkerReportsProgress = true,
+                WorkerSupportsCancellation = true
             };
         }
 
@@ -51,6 +52,12 @@ namespace RomSetManager.Worker
                 var fileCounter = 0;
                 foreach (var file in filteredFiles)
                 {
+                    if (BackgroundWorker.CancellationPending)
+                    {
+                        args.Cancel = true;
+                        return;
+                    }
+
                     var tmpRomFiles = Read(file);
                     romFiles.AddRange(tmpRomFiles);
                     fileCounter++;
@@ -237,6 +244,12 @@ namespace RomSetManager.Worker
 
                 foreach (var romFile in romFiles)
                 {
+                    if (BackgroundWorker.CancellationPending)
+                    {
+                        args.Cancel = true;
+                        return;
+                    }
+
                     romFile.Export = false; //reset to false because it will set to true below (if match)
                     var parts = GetWipeParts(romFile.System, romFile.FileName, Configuration.BestMatch.Preferences.NameParts);
                     var wipedName = romFile.FileName;
@@ -258,8 +271,12 @@ namespace RomSetManager.Worker
                     currentCounter++;
                     NotifyProgress(currentCounter, total);
                 }
-                
-                FilterByPreferences(romFiles);
+
+                if (!FilterByPreferences(romFiles))
+                {
+                    args.Cancel = true;
+                    return;
+                }
                 args.Result = romFiles;
             };
                 
@@ -268,7 +285,7 @@ namespace RomSetManager.Worker
             //return romFiles;
         }
 
-        private void FilterByPreferences(List<RomFile> wipedRomFiles)
+        private bool FilterByPreferences(List<RomFile> wipedRomFiles)
         {
             var nameParts = Configuration.BestMatch.Preferences.NameParts;
             var favorite = nameParts.Where(n => n.Behaviour == BehaviourType.Favorite).OrderBy(n => n.Position).ToList();
@@ -288,6 +305,11 @@ namespace RomSetManager.Worker
 
             foreach (var romFile in wipedRomFiles)
             {
+                if (BackgroundWorker.CancellationPending)
+                {
+                    return false;
+                }
+
                 var romNameCount = groupedRomNames.First(g => g.Name == Path.GetFileNameWithoutExtension(romFile.FileNameWiped)).Counter;
 
                 //get rom-count with identical names to current rom
@@ -310,6 +332,11 @@ namespace RomSetManager.Worker
             
             foreach (var fileName in filteredFileNames)
             {
+                if (BackgroundWorker.CancellationPending)
+                {
+                    return false;
+                }
+
                 var roms = filtered.Where(f => Path.GetFileNameWithoutExtension(f.FileNameWiped) == fileName).ToList();
 
                 var prevRoms = roms.ToList();
@@ -331,6 +358,8 @@ namespace RomSetManager.Worker
                 var winner = prevRoms.First();
                 winner.Export = true;
             }
+
+            return true;
         }
 
 
@@ -346,6 +375,11 @@ namespace RomSetManager.Worker
 
                 foreach (var romFile in romFiles)
                 {
+                    if (BackgroundWorker.CancellationPending)
+                    {
+                        args.Cancel = true;
+                        return;
+                    }
                     try
                     {
                         counter++;

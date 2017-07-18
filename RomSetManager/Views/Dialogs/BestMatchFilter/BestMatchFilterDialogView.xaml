@@ -11,28 +11,28 @@
              xmlns:constants="clr-namespace:Model.Constants;assembly=Model"
              xmlns:views="clr-namespace:RomSetManager.Views"
              mc:Ignorable="d" 
-             
+                      WindowTitleBrush="DimGray"
                       Height="{Binding SystemParameters.PrimaryScreenHeight}" 
                       Width="{Binding SystemParameters.PrimaryScreenWidth}"
              d:DesignHeight="800" d:DesignWidth="800"
                       BorderThickness="3" 
-                      GlowBrush="Black"
+                      GlowBrush="DimGray"
                       ResizeMode="CanResizeWithGrip"
                       WindowTransitionsEnabled="False"
                       WindowStartupLocation="CenterScreen">
 
     <controls:MetroWindow.Resources>
-        <Style x:Key="UpDownBtn" TargetType="Button">
+        <Style x:Key="UpDownBtn" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
             <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
-            <Setter Property="Width" Value="15"></Setter>
+            <Setter Property="Width" Value="25"></Setter>
         </Style>
-        <Style x:Key="DialogButton" TargetType="Button">
+        <Style x:Key="DialogButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
             <Setter Property="Height" Value="25"></Setter>
             <Setter Property="Width" Value="60"></Setter>
             <Setter Property="Margin" Value="5 0 0 0"></Setter>
             <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
         </Style>
-        <Style x:Key="ActionButton" TargetType="Button">
+        <Style x:Key="ActionButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
             <Setter Property="Height" Value="25"></Setter>
             <Setter Property="Width" Value="130"></Setter>
             <Setter Property="Margin" Value="5 0 0 0"></Setter>
