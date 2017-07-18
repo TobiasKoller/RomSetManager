@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,7 +52,7 @@ namespace RomSetManager.Views
             foreach (var type in types.Where(t => t.FullName.EndsWith("View")))
             {
                 var fullName = type.FullName;
-                var viewModelName = string.Format("{0}Model", fullName);
+                var viewModelName = $"{fullName}Model";
 
                 var viewModelType = types.FirstOrDefault(t => t.FullName == viewModelName);
                 if (viewModelType == null)
@@ -65,7 +66,10 @@ namespace RomSetManager.Views
 
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
-            DisplayRootViewFor<ShellViewModel>();
+            dynamic settings = new ExpandoObject();
+            settings.Title = "RomSetManager - Manage all of your Rom-Files";
+
+            DisplayRootViewFor<ShellViewModel>(settings);
         }
 
         protected override object GetInstance(Type service, string key)

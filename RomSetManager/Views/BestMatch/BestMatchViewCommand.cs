@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Dynamic;
 using System.IO;
 using System.Linq;
@@ -7,11 +8,13 @@ using System.Runtime.Remoting.Messaging;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Forms;
+using System.Windows.Threading;
 using Caliburn.Micro;
 using Microsoft.Win32;
 using Model;
 using RomSetManager.Views.Dialogs;
 using RomSetManager.Views.Dialogs.BestMatchFilter;
+using RomSetManager.Worker;
 using Configuration = Model.Configuration;
 using MessageBox = System.Windows.Forms.MessageBox;
 
@@ -74,6 +77,9 @@ namespace RomSetManager.Views.BestMatch
             while (true)
             {
                 tmpDir = OpenFolderChooseDialog(SourceDirectory, "Select a directory where the retropie-folder-structure gets copied to.");
+                if (string.IsNullOrEmpty(tmpDir))
+                    return;
+
                 if (!Directory.EnumerateFileSystemEntries(tmpDir).Any())
                     break;
 
@@ -102,29 +108,65 @@ namespace RomSetManager.Views.BestMatch
         public void ReadSourceRomFiles()
         {
             var config = _configurationService.GetConfiguration();
-            _romFileWorker.Configuration = config;
+            var romFileWorker = new RomFileWorker(config);
 
-            var romFiles = _romFileWorker.GetRomFiles();
-            SetRomList(romFiles);
+            romFileWorker.BackgroundWorker.ProgressChanged += (sender, args) =>
+            {
+                LoadScreenProgress = args.ProgressPercentage;
+            };
+            romFileWorker.BackgroundWorker.RunWorkerCompleted += (sender, args) =>
+            {
+                var romFiles = (List<RomFile>) args.Result;
+                SetRomList(romFiles);
 
-            NotifyOfPropertyChange(()=>CanWipeFileNames);
+                NotifyOfPropertyChange(() => CanWipeFileNames);
+                HideLoadScreen();
+            };
+
+            ShowLoadScreen("Reading Rom-Files...");
+            romFileWorker.GetRomFiles();
         }
 
         public bool CanWipeFileNames => RomFiles.Count > 0;
         public void WipeFileNames()
         {
             var config = _configurationService.GetConfiguration();
-            _romFileWorker.Configuration = config;
+            var romFileWorker = new RomFileWorker(config);
 
-            var list = _romFileWorker.WipeFileNames(RomFiles.ToList());
-            SetRomList(list);
-            NotifyOfPropertyChange(()=>CanExport);
+            romFileWorker.BackgroundWorker.ProgressChanged += (sender, args) =>
+            {
+                LoadScreenProgress = args.ProgressPercentage;
+            };
+            romFileWorker.BackgroundWorker.RunWorkerCompleted += (sender, args) =>
+            {
+                var romFiles = (List<RomFile>) args.Result;
+                SetRomList(romFiles);
+                NotifyOfPropertyChange(() => CanExport);
+                HideLoadScreen();
+            };
+
+            ShowLoadScreen("Wiping Rom-Names...");
+            romFileWorker.WipeFileNames(RomFiles.ToList());
+                
         }
 
         public bool CanExport => RomFiles.Any(r => r.Export);
         public void Export()
         {
-            _romFileWorker.Export(RomFiles.Where(r => r.Export).ToList());
+            var config = _configurationService.GetConfiguration();
+            var romFileWorker = new RomFileWorker(config);
+
+            romFileWorker.BackgroundWorker.ProgressChanged += (sender, args) =>
+            {
+                LoadScreenProgress = args.ProgressPercentage;
+            };
+            romFileWorker.BackgroundWorker.RunWorkerCompleted += (sender, args) =>
+            {
+                HideLoadScreen();
+            };
+
+            ShowLoadScreen("Exporting wiped roms to ["+DestinationDirectory+"]...");
+            romFileWorker.Export(RomFiles.Where(r => r.Export).ToList());
         }
 
         #endregion
@@ -151,7 +193,7 @@ namespace RomSetManager.Views.BestMatch
 
             var result = fd.ShowDialog();
             if (result != DialogResult.OK)
-                return directory;
+                return null;
 
             return fd.SelectedPath;
         }

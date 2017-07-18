@@ -10,7 +10,7 @@
       xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
 
       mc:Ignorable="d" 
-      d:DesignHeight="300"
+      d:DesignHeight="400"
       Title="BestMatchView" Background="White" d:DesignWidth="824">
 
     <Page.Resources>
@@ -26,7 +26,7 @@
             <Setter Property="Margin" Value="5 0 0 0" />
             <Setter Property="Height" Value="30" />
         </Style>
-        
+
     </Page.Resources>
 
 
@@ -36,6 +36,24 @@
             <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Grid.RowSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ZIndex="1000" Visibility="{Binding LoadScreenVisibility}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3" Background="Gray" Opacity=".3"></StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="1" Background="White">
+                <TextBlock Text="{Binding LoadScreenText}"></TextBlock>
+                <ProgressBar Value="{Binding LoadScreenProgress}"></ProgressBar>
+            </StackPanel>
+        </Grid>
+        
         <GroupBox Header="1. Choose your directories" Grid.Row="0" Background="OrangeRed" BorderBrush="OrangeRed">
             <StackPanel Orientation="Vertical" Margin="5">
 
@@ -56,7 +74,7 @@
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="EditPreferences" Style="{StaticResource ActionBtn}">Edit Preferences</Button>
             </StackPanel>
-            
+
         </GroupBox>
         <GroupBox Header="3. Actions" Grid.Row="2" Background="GreenYellow" BorderBrush="GreenYellow">
             <Grid>
@@ -74,6 +92,9 @@
                     <RowDefinition Height="40"></RowDefinition>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
+
+                
+
 
                 <StackPanel Orientation="Horizontal" Grid.Row="0">
                     <Button x:Name="ReadSourceRomFiles" Style="{StaticResource ActionBtn}">1. Read Source-Rom Directory</Button>

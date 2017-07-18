@@ -18,7 +18,7 @@ namespace RomSetManager.Views
         protected Services.IServiceProvider ServiceProvider;
         public string Name { get; set; }
 
-        public ViewModelBase(string name, SimpleContainerEx container, IEventAggregator eventAggregator, INavigationServiceProvider navigationServiceProvider,
+        protected ViewModelBase(string name, SimpleContainerEx container, IEventAggregator eventAggregator, INavigationServiceProvider navigationServiceProvider,
             string navigationServiceName, Services.IServiceProvider serviceProvider)
         {
             Name = name;
@@ -29,8 +29,6 @@ namespace RomSetManager.Views
 
             if (!string.IsNullOrEmpty(navigationServiceName))
                 InitNavigationService(navigationServiceName);
-
-
         }
 
         protected void InitNavigationService(string navigationServiceName)

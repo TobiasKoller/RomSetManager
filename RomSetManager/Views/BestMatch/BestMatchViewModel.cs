@@ -19,22 +19,17 @@ using IServiceProvider = RomSetManager.Services.IServiceProvider;
 
 namespace RomSetManager.Views.BestMatch
 {
-    public partial class BestMatchViewModel : ViewModelBase
+    public partial class BestMatchViewModel : LoadableViewModelBase
     {
         public ObservableCollection<NamePart> FilterLanguages { get; set; }
         public ObservableCollection<RomFile> RomFiles { get; set; }
         private ConfigurationService _configurationService;
-        private ObservableCollection<ICollectionView> GroupedRomFiles { get; set; }
-        private RomFileWorker _romFileWorker;
 
         private string _sourceDirectory, _destinationDirectory="";
-
-        public string SourceDirectory{get => _sourceDirectory;
-            set
-            {
-                _sourceDirectory = value;
-                NotifyOfPropertyChange(()=>SourceDirectory);
-            }
+        public string SourceDirectory
+        {
+            get => _sourceDirectory;
+            set { SetPropertyAndNotify(ref _sourceDirectory, value, () => SourceDirectory); }
         }
         public string DestinationDirectory
         {
@@ -58,8 +53,7 @@ namespace RomSetManager.Views.BestMatch
         {
             var service = ServiceProvider.ConfigurationService;
             var config = service.GetConfiguration();
-
-            _romFileWorker = new RomFileWorker(config);
+            
             SourceDirectory = config.BestMatch.RomSourceDirectory;
             DestinationDirectory = config.BestMatch.RomDestinationDirectory;
         }

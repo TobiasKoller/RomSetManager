@@ -20,6 +20,7 @@ namespace RomSetManager.Views.Main
         public void Init(Frame frame)
         {
             NavigationService = NavigationServiceProvider.Register(frame, Constants.FRAME_MAIN);
+            NavigationService.NavigateToViewModel<BestMatchViewModel>();
         }
     }
 }
