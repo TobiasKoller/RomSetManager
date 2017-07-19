@@ -1,4 +1,5 @@
 
+
 # RomSetManager
 Manage all your retro-roms.
 
@@ -31,14 +32,14 @@ link: TODO 2017/07/19
 ```
 RomSetManager.exe
 ```
-![](Images/Readme/app.PNG "")
+![1](Images/Readme/app.PNG "")
 
 ### 3. Choose the directories
-![](Images/Readme/bestmatch_1_directories.PNG "")
+![2](Images/Readme/bestmatch_1_directories.PNG "")
 
 #### Source Rom Directory
 Choose your Directory where all your roms are located. This directory has to have the same structure as retropie like
-![](Images/Readme/bestmatch_1_directories_structure.PNG "")
+![3](Images/Readme/bestmatch_1_directories_structure.PNG "")
 
 #### Output Rom Directory
 Choose an empty directory where all the modified roms will saved to.
@@ -48,15 +49,37 @@ if you have not this source-directory-structure you can copy it (just the folder
 After that you should copy your roms in the correct system-subdir.
 
 ### 4. Set your preferences
-![](Images/Readme/bestmatch_2_preferences.PNG "")
+![](Images/Readme/bestmatch_2_preferences_dialog.PNG "")
+
 Here you can choose your preferences for finding the correct rom-files if you have multiple of the same game
 
-![](Images/Readme/bestmatch_2_preferences_dialog.PNG "")
+#### FAVORITE
 ![](Images/Readme/bestmatch_2_preferences_dialog_favorite.PNG "")
-![](Images/Readme/bestmatch_2_preferences_dialog_ignore_option.PNG "")
+
+Add here your favorite items. If more than one rom-files of the same game is present in your folder it looks for the best match, starting from #1 (most important)
+
+#### DONT CARE
+![](Images/Readme/bestmatch_2_preferences_dialog_dontcare.PNG "")
+
+Add here your items you don't care about.
+
+#### MUST HAVES
 ![](Images/Readme/bestmatch_2_preferences_dialog_musthaves.PNG "")
+
+Add here your items your rom-name HAS TO HAVE. If these items doesn't appear in your rom-file-name the get ignored.
+
+#### NEVER USE
 ![](Images/Readme/bestmatch_2_preferences_dialog_neveruse.PNG "")
 
+All roms with these items in their name will get ignored because you never want these.
+In my case I only want english and german-roms because I'm not interessted in other langugages. So I simply add all these langauges here.
 
+####Ignore if only one rom-file of a game exist
+![](Images/Readme/bestmatch_2_preferences_dialog_actionbuttons.PNG "")
 
+For the grids **NEVER USE** and **MUST HAVES** you can set this option. If only one rom-file of a game is available it will igore these settings.
 
+###Moving items
+![](Images/Readme/bestmatch_2_preferences_dialog_actionbuttons.PNG "")
+
+you can simply move items from one grid to another by selecting the rows and click the button where these items should go to.
