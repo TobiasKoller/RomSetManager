@@ -130,8 +130,8 @@ namespace RomSetManager.Worker
                     return GZipArchive.Open(sourceFile);
                 case CompressionType.Rar:
                     return RarArchive.Open(sourceFile);
-                case CompressionType.Tar:
-                    return TarArchive.Open(sourceFile);
+                //case CompressionType.Tar:
+                //    return TarArchive.Open(sourceFile);
                 case CompressionType.Zip:
                     return ZipArchive.Open(sourceFile);
             }
@@ -153,8 +153,8 @@ namespace RomSetManager.Worker
             if (RarArchive.IsRarFile(sourceFile))
                 return CompressionType.Rar;
 
-            if (TarArchive.IsTarFile(sourceFile))
-                return CompressionType.Tar;
+            //if (TarArchive.IsTarFile(sourceFile))
+            //    return CompressionType.Tar;
 
             return CompressionType.None;
         }
