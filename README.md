@@ -75,7 +75,7 @@ All roms with these items in their name will get ignored because you never want 
 In my case I only want english and german-roms because I'm not interessted in other langugages. So I simply add all these langauges here.
 
 #### Ignore if only one rom-file of a game exist
-![](Images/Readme/bestmatch_2_preferences_dialog_actionbuttons.PNG "")
+![](Images/Readme/bestmatch_2_preferences_dialog_ignore_option.PNG "")
 
 For the grids **NEVER USE** and **MUST HAVES** you can set this option. If only one rom-file of a game is available it will igore these settings.
 
