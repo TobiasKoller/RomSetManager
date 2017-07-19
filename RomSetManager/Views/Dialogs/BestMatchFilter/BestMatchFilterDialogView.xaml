@@ -61,7 +61,7 @@
                     <RowDefinition Height="5*"/>
                 </Grid.RowDefinitions>
 
-                <GroupBox Header="Favorites (What is most imporant to you.#1=most important)" Grid.Row="0" Grid.Column="0" Background="GreenYellow">
+                <GroupBox Header="Favorites (What is most imporant to you.#1=most important)" Grid.Row="0" Grid.Column="0" Background="GreenYellow" BorderBrush="YellowGreen">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -93,7 +93,7 @@
                         </StackPanel>
                     </Grid>
                 </GroupBox>
-                <GroupBox Header="I don't care (You don't care about these items if they appear in the rom-names or not)" Grid.Row="2" Grid.Column="0" Background="LightGray">
+                <GroupBox Header="I don't care (You don't care about these items if they appear in the rom-names or not)" Grid.Row="2" Grid.Column="0" Background="LightGray" BorderBrush="LightGray">
                     <DockPanel>
                         <DataGrid x:Name="DontCareGrid" ItemsSource="{Binding DontCareItems}" AutoGenerateColumns="False"
                                   CanUserAddRows="false" CanUserDeleteRows="false" CanUserResizeRows="false" CanUserSortColumns="True"
@@ -132,7 +132,7 @@
                         </StackPanel>
                     </Button>
                 </StackPanel>
-                <GroupBox Grid.Row="0" Grid.Column="1" Header="Must HAVES!! (These items HAVE to be present in the rom file-name)" Background="Blue">
+                <GroupBox Grid.Row="0" Grid.Column="1" Header="Must HAVES!! (These items HAVE to be present in the rom file-name)" Background="Blue" BorderBrush="Blue">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"/>
@@ -156,7 +156,7 @@
                         </DataGrid>
                     </Grid>
                 </GroupBox>
-                <GroupBox Grid.Row="2" Grid.Column="1" Header="NEVER use these!! (No matter what happens. If roms have one of these, I never want them)" Background="OrangeRed">
+                <GroupBox Grid.Row="2" Grid.Column="1" Header="NEVER use these!! (No matter what happens. If roms have one of these, I never want them)" Background="OrangeRed" BorderBrush="OrangeRed">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"/>
