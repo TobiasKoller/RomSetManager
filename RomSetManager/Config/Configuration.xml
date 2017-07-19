@@ -7,152 +7,152 @@
       <ignore_neveruse_for_one_rom>False</ignore_neveruse_for_one_rom>
       <nameparts>
         <namepart name="Verified good dump" value="[!],(!)" system="any" type="Property" behaviour="Favorite" position="1" description="Verified good dump. Thank God for these!" />
-        <namepart name="Unlicensed" value="(Unl)" system="any" type="Property" behaviour="DontCare" position="2" description="" />
-        <namepart name="Albanian" value="(Alb)" system="any" type="Language" behaviour="NeverUse" position="3" description="" />
-        <namepart name="German" value="(Ger),(G)" system="any" type="Language" behaviour="Favorite" position="4" description="" />
-        <namepart name="Europe" value="(E)" system="any" type="Language" behaviour="DontCare" position="5" description="" />
-        <namepart name="Asia" value="(As)" system="any" type="Language" behaviour="NeverUse" position="6" description="" />
-        <namepart name="USA" value="(U),(UE),(E)" system="any" type="Language" behaviour="Favorite" position="7" description="" />
-        <namepart name="Hack" value="[h#IR],[hIR+C],[hIR],[h#C],[h#I],[h#IR],[hIR+C],[h#I+#C],[hI#C],[h#+#C],[h#I+C],[hI+#C],[hI+C],[hI],(* Hack),(Hack)" system="any" type="Property" behaviour="DontCare" position="8" description="Something in this ROM is not quite as it should be. Often a hacked ROM simply has a changed header or has been enabled to run in different regions. Other times it could be a release group intro, or just some kind of cheating or funny hack." />
-        <namepart name="Arabic" value="(Ara)" system="any" type="Language" behaviour="NeverUse" position="9" description="" />
-        <namepart name="English" value="(Eng),(UK)" system="any" type="Language" behaviour="Favorite" position="10" description="" />
-        <namepart name="Intro removed" value="[hIR00],[hIRff]" system="gba" type="Property" behaviour="DontCare" position="11" description="Something in this ROM is not quite as it should be. Often a hacked ROM simply has a changed header or has been enabled to run in different regions. Other times it could be a release group intro, or just some kind of cheating or funny hack." />
-        <namepart name="Japan" value="(J),(Jap),(1)" system="any" type="Language" behaviour="NeverUse" position="12" description="" />
-        <namepart name="Newer Translation" value="[T+*]" system="any" type="Property" behaviour="Favorite" position="13" description="" />
-        <namepart name="OverDump" value="[o*]" system="any" type="Property" behaviour="DontCare" position="14" description="An overdumped ROM image has more data than is actually in the cart. The extra information means nothing and is removed from the true image." />
-        <namepart name="Canadian" value="(C)" system="any" type="Language" behaviour="NeverUse" position="15" description="" />
-        <namepart name="Old Translation" value="[T-*]" system="any" type="Property" behaviour="Favorite" position="16" description="" />
-        <namepart name="Alternative version" value="[a*]" system="any" type="Property" behaviour="DontCare" position="17" description="This is simply an alternate version of a ROM. Many games have been re-released to fix bugs or even to eliminate Game Genie codes (Yes, Nintendo hates that device)." />
-        <namepart name="Canadian French" value="(Can),(FC)" system="any" type="Language" behaviour="NeverUse" position="18" description="" />
-        <namepart name="Hack, only cart name changed" value="[f#C],[f#+#C]" system="any" type="Property" behaviour="DontCare" position="19" description="A fixed game has been altered in some way so that it will run better on a copier or emulator." />
-        <namepart name="Chinese" value="(C),(Ch),(Chi)" system="any" type="Language" behaviour="NeverUse" position="20" description="" />
-        <namepart name="Fixed" value="[f*]" system="any" type="Property" behaviour="DontCare" position="21" description="A fixed game has been altered in some way so that it will run better on a copier or emulator." />
-        <namepart name="Simplified Chinese" value="(ChS),(SChi)" system="any" type="Language" behaviour="NeverUse" position="22" description="" />
-        <namepart name="Multilanguage" value="[m*],(M#)" system="any" type="Language" behaviour="DontCare" position="23" description="" />
-        <namepart name="Traditional Chinese" value="(TChi),(ChT)" system="any" type="Language" behaviour="NeverUse" position="24" description="" />
-        <namepart name="USA/Japan" value="(JU)" system="any" type="Language" behaviour="DontCare" position="25" description="" />
-        <namepart name="Croatia" value="(Cro)" system="any" type="Language" behaviour="NeverUse" position="26" description="" />
-        <namepart name="Europe/Japan" value="(JE)" system="any" type="Language" behaviour="DontCare" position="27" description="" />
-        <namepart name="Danish" value="(Dan)" system="any" type="Language" behaviour="NeverUse" position="28" description="" />
-        <namepart name="USA/Europe/Japan" value="(JUE)" system="any" type="Language" behaviour="DontCare" position="29" description="" />
-        <namepart name="Esperanto" value="(Esp)" system="any" type="Language" behaviour="NeverUse" position="30" description="" />
-        <namepart name="Checksum" value="(###)" system="any" type="Property" behaviour="DontCare" position="31" description="" />
-        <namepart name="Finnish" value="(Fin),(FN)" system="any" type="Language" behaviour="NeverUse" position="32" description="" />
-        <namepart name="Unclassified" value="ZZZ_UNK" system="any" type="Property" behaviour="DontCare" position="33" description="" />
-        <namepart name="Greek" value="(Gre),(Gr)" system="any" type="Language" behaviour="NeverUse" position="34" description="" />
-        <namepart name="Pirate" value="[p*]" system="any" type="Property" behaviour="DontCare" position="35" description="" />
-        <namepart name="Hebrew" value="(Heb)" system="any" type="Language" behaviour="NeverUse" position="36" description="" />
-        <namepart name="Trained" value="[t],[t#],[t#+#C],[t#+C]" system="any" type="Property" behaviour="DontCare" position="37" description="A trainer is special code which executes before the game is begun. It allows you to access cheats from a menu." />
-        <namepart name="Italian" value="(Ita),(I)" system="any" type="Language" behaviour="NeverUse" position="38" description="" />
-        <namepart name="Unknown Year" value="(-)" system="any" type="Property" behaviour="DontCare" position="39" description="" />
-        <namepart name="Korean" value="(Kor)" system="any" type="Language" behaviour="NeverUse" position="40" description="" />
-        <namepart name="ROM Size" value="(??k)" system="any" type="Property" behaviour="DontCare" position="41" description="" />
-        <namepart name="Latvian" value="(Lat)" system="any" type="Language" behaviour="NeverUse" position="42" description="" />
-        <namepart name="Super" value="[S]" system="gb" type="Property" behaviour="DontCare" position="43" description="" />
-        <namepart name="Lithuanian" value="(Lit)" system="any" type="Language" behaviour="NeverUse" position="44" description="" />
-        <namepart name="Bung Fix" value="[BF]" system="gb" type="Property" behaviour="DontCare" position="45" description="Bung released a programmable cartridge compatable with the GameBoy which could hold any data you wished to play. However, many games do not function on Bung v1.0 carts and have to be 'fixed.'" />
-        <namepart name="Polish" value="(Pol)" system="any" type="Language" behaviour="NeverUse" position="46" description="" />
-        <namepart name="Color" value="[C]" system="gb" type="Property" behaviour="DontCare" position="47" description="" />
-        <namepart name="Portuguese" value="(Por)" system="any" type="Language" behaviour="NeverUse" position="48" description="" />
-        <namepart name="BS ROMs" value="(BS)" system="snes" type="Property" behaviour="DontCare" position="49" description="These Japanese ROMs were distributed through a satellite system in Japan known as the Broadcast Satellaview. They were transmitted along with a TV show which was connected to the game in some way. These games were only playable during the show, and thus stop after an hour, and many were timed so that only certain time periods were playable.     " />
-        <namepart name="Romanian / Rumanian" value="(Rum)" system="any" type="Language" behaviour="NeverUse" position="50" description="" />
-        <namepart name="Sufami Turbo" value="(ST)" system="snes" type="Property" behaviour="DontCare" position="51" description="The Sufami Turbo device allowed two GameBoy sized carts to be plugged into the SNES. Certain carts combined into new games much like the Sonic and Knuckles lock-on technology by Sega." />
-        <namepart name="Romanian / Rumanian" value="(Rom)" system="any" type="Language" behaviour="NeverUse" position="52" description="" />
-        <namepart name="Nintendo Power" value="(NP)" system="snes" type="Property" behaviour="DontCare" position="53" description="Nintendo Power has been known to release games only available to its subscribers. Most of these ROMs are Japanese, as this practice occured mainly in Japan.  " />
-        <namepart name="Serbian" value="(Ser)" system="any" type="Language" behaviour="NeverUse" position="54" description="" />
-        <namepart name="USA" value="(4)" system="any" type="Language" behaviour="DontCare" position="55" description="While this code is technically the same as a (U) code, it is a newer header format and represents that the cart will run on USA and Brazil NTSC machines.  " />
-        <namepart name="Spanish" value="(Spa),(S)" system="any" type="Language" behaviour="NeverUse" position="56" description="" />
-        <namepart name="NTSC Only" value="(5),(NTSC)" system="any" type="Property" behaviour="DontCare" position="57" description="" />
-        <namepart name="Swedish" value="(Swe),(Sw)" system="any" type="Language" behaviour="NeverUse" position="58" description="" />
-        <namepart name="PAL Only" value="(8),(PAL)" system="any" type="Property" behaviour="DontCare" position="59" description="" />
-        <namepart name="Thai" value="(Tai)" system="any" type="Language" behaviour="NeverUse" position="60" description="" />
-        <namepart name="non USA" value="(B)" system="genesis,megadrive" type="Language" behaviour="DontCare" position="61" description="This country code indicates that the cart will run on any non US machine. " />
-        <namepart name="Turkish" value="(Tur)" system="any" type="Language" behaviour="NeverUse" position="62" description="" />
-        <namepart name="Checksum" value="[c]" system="any" type="Property" behaviour="DontCare" position="63" description="This code represents a cart with known faulty checksum routines." />
-        <namepart name="Uruguay Spanish" value="(Uru)" system="any" type="Language" behaviour="NeverUse" position="64" description="" />
-        <namepart name="Bad Checksum" value="[x]" system="any" type="Property" behaviour="DontCare" position="65" description="" />
-        <namepart name="Russia" value="(R),(Rus)" system="any" type="Language" behaviour="NeverUse" position="66" description="" />
-        <namepart name="Countries" value="[R-*]" system="any" type="Language" behaviour="DontCare" position="67" description="" />
-        <namepart name="Bad Dump" value="[b*]" system="any" type="Property" behaviour="NeverUse" position="68" description="A bad dump often occurs with an older game or a faulty dumper (bad connection). Another common source of [b] ROMs is a corrupted upload to a release FTP. " />
-        <namepart name="Euro Version" value="(PAL)" system="atari" type="Language" behaviour="DontCare" position="69" description="" />
-        <namepart name="Brazil" value="(B),(Bra)" system="any" type="Language" behaviour="NeverUse" position="70" description="" />
-        <namepart name="Intro hacks" value="[hI??]" system="gba" type="Property" behaviour="DontCare" position="71" description="" />
-        <namepart name="France" value="(F),(Fre)" system="any" type="Language" behaviour="NeverUse" position="72" description="" />
-        <namepart name="ADAM Version" value="(Adam)" system="coleco" type="Property" behaviour="DontCare" position="73" description="" />
-        <namepart name="Norway" value="(Nor),(No)" system="any" type="Language" behaviour="NeverUse" position="74" description="" />
-        <namepart name="Mono Only " value="[M]" system="NeoGeo Pocket" type="Property" behaviour="DontCare" position="75" description="" />
-        <namepart name="Netherlands" value="(NL),(D),(Dut)" system="any" type="Language" behaviour="NeverUse" position="76" description="" />
-        <namepart name="PlayChoice 10" value="(PC10)" system="NES/FC" type="Property" behaviour="DontCare" position="77" description="The PlayChoice 10 was an arcade unit which played exact copies of NES games in an arcade cabinet. The machines had a choice of 10 games to choose from and ran for about 3 minutes on 25 cents." />
-        <namepart name="Versus" value="(VS)" system="NES/FC" type="Property" behaviour="DontCare" position="78" description="The Versus system ran on similar hardware to the PC10 machines, but simply allowed you to play against each other." />
-        <namepart name="FFE Copier fmt" value="[hFFE]" system="nes" type="Property" behaviour="DontCare" position="79" description="" />
-        <namepart name="Australia" value="(A)" system="any" type="Language" behaviour="DontCare" position="80" description="" />
-        <namepart name="World" value="(F)" system="genesis,megadrive" type="Language" behaviour="DontCare" position="81" description="" />
-        <namepart name="World" value="(W)" system="any" type="Language" behaviour="DontCare" position="82" description="" />
-        <namepart name="Hong Kong" value="(HK)" system="any" type="Language" behaviour="DontCare" position="83" description="" />
-        <namepart name="Korea" value="(K)" system="any" type="Language" behaviour="DontCare" position="84" description="" />
-        <namepart name="Public Domain" value="(PD)" system="any" type="Property" behaviour="DontCare" position="85" description="Public domain, free software and freeware" />
-        <namepart name="Unknown Country" value="(Unk)" system="any" type="Language" behaviour="DontCare" position="86" description="" />
-        <namepart name="Rev" value="(REV##)" system="any" type="Property" behaviour="DontCare" position="87" description="" />
-        <namepart name="Sega-Net game" value="(SN)" system="any" type="Property" behaviour="DontCare" position="88" description="" />
-        <namepart name="Sonic Japanese version 2" value="(REVXB)" system="any" type="Property" behaviour="DontCare" position="89" description="" />
-        <namepart name="Sonic Compilation version" value="(REVSC##)" system="any" type="Property" behaviour="DontCare" position="90" description="" />
-        <namepart name="Prototype" value="(Prototype)" system="any" type="Property" behaviour="DontCare" position="91" description="" />
-        <namepart name="Megadrive 32X" value="(32X)" system="any" type="Property" behaviour="DontCare" position="92" description="" />
-        <namepart name="Eb ??" value="(EB)" system="any" type="Property" behaviour="DontCare" position="93" description="" />
-        <namepart name="Alpha" value="(Alpha),(Alpha #)" system="any" type="Property" behaviour="DontCare" position="94" description="" />
-        <namepart name="Beta" value="(Beta),(Beta #)" system="any" type="Property" behaviour="DontCare" position="95" description="" />
-        <namepart name="Sample" value="(Sample)" system="any" type="Property" behaviour="DontCare" position="96" description="" />
-        <namepart name="Version" value="(V#.#)" system="any" type="Property" behaviour="DontCare" position="97" description="" />
-        <namepart name="Official multicart" value="(Vol #)" system="any" type="Property" behaviour="DontCare" position="98" description="" />
-        <namepart name="GameCube rip" value="(GCN)" system="any" type="Property" behaviour="DontCare" position="99" description="" />
-        <namepart name="Pre-release version" value="(Pre-Release)" system="any" type="Property" behaviour="DontCare" position="100" description="" />
-        <namepart name="Demonstration version available at Kiosks" value="(Kiosk Demo)" system="any" type="Property" behaviour="DontCare" position="101" description="" />
-        <namepart name="Multicart menu, unselectable options" value="(Menu)" system="any" type="Property" behaviour="DontCare" position="102" description="" />
-        <namepart name="Size in MB" value="(##MBit)" system="any" type="Property" behaviour="DontCare" position="103" description="" />
-        <namepart name="Size in KB" value="##k)" system="any" type="Property" behaviour="DontCare" position="104" description="" />
-        <namepart name="Old Version" value="(old)" system="any" type="Property" behaviour="DontCare" position="105" description="" />
-        <namepart name="Cartridge format" value="(Cart)" system="any" type="Property" behaviour="DontCare" position="106" description="" />
-        <namepart name="Dump compilation" value="(Compilation)" system="any" type="Property" behaviour="DontCare" position="107" description="The ROM is a dump of a compilation" />
-        <namepart name="Pirate trad. Chinese game" value="(Ch-Trad)" system="any" type="Language" behaviour="DontCare" position="108" description="" />
-        <namepart name="Pirate simple Chinese game" value="(Ch-Simple)" system="any" type="Property" behaviour="DontCare" position="109" description="" />
-        <namepart name="Removed EEPROM_V124 patched" value="[f_*]" system="gba" type="Property" behaviour="DontCare" position="110" description="" />
-        <namepart name="GBA Video" value="[v]" system="gba" type="Property" behaviour="DontCare" position="111" description="" />
-        <namepart name="E-book ROM" value="[eb]" system="gba" type="Property" behaviour="DontCare" position="112" description="" />
-        <namepart name="E-Book Advance ROM" value="[eba]" system="gba" type="Property" behaviour="DontCare" position="113" description="" />
-        <namepart name="Book Reader Advance ROM" value="[ebb]" system="gba" type="Property" behaviour="DontCare" position="114" description="" />
-        <namepart name="Removed EEPROM_V125" value="[f125]" system="gba" type="Property" behaviour="DontCare" position="115" description="" />
-        <namepart name="Removed EEPROM_V126" value="[f126]" system="gba" type="Property" behaviour="DontCare" position="116" description="" />
-        <namepart name="Chinese GBA for IQue" value="(IQue)" system="gba" type="Language" behaviour="DontCare" position="117" description="" />
-        <namepart name="Emul. Coleco Vision on GBA" value="Coleco on GBA" system="gba" type="Property" behaviour="DontCare" position="118" description="" />
-        <namepart name="Emul. Coleco Vision via Coleco" value="Cologne" system="gba" type="Property" behaviour="DontCare" position="119" description="" />
-        <namepart name="Emul. MasterSystem via DrSMS" value="DrSMS" system="gba" type="Property" behaviour="DontCare" position="120" description="" />
-        <namepart name="Emul. ZX Spectrum via FooN" value="FooN" system="gba" type="Property" behaviour="DontCare" position="121" description="" />
-        <namepart name="Emul. NES via PocketNES" value="PocketNES" system="gba" type="Property" behaviour="DontCare" position="122" description="" />
-        <namepart name="Emul. NES via FC2GBA" value="FC2GBA" system="gba" type="Property" behaviour="DontCare" position="123" description="" />
-        <namepart name="Emul. Game Boy via Goomba" value="Goomba" system="gba" type="Property" behaviour="DontCare" position="124" description="" />
-        <namepart name="Emul. Adventure Game Interpr. via GBAGI" value="GBAGI" system="gba" type="Property" behaviour="DontCare" position="125" description="" />
-        <namepart name="Emul. WonderWan via Swandavance" value="Swanadvance" system="gba" type="Property" behaviour="DontCare" position="126" description="" />
-        <namepart name="Emul. TurboGrafx-16 via PCEAdvance" value="PCEAdvance" system="gba" type="Property" behaviour="DontCare" position="127" description="" />
-        <namepart name="Emul. MasterSystem via PocketSMS" value="PocketSMS" system="gba" type="Property" behaviour="DontCare" position="128" description="" />
-        <namepart name="Emul. SNES via PocketSNES" value="PocketSNES" system="gba" type="Property" behaviour="DontCare" position="129" description="" />
-        <namepart name="Emul. SNES via SNESAdvance" value="SNESAdvance" system="gba" type="Property" behaviour="DontCare" position="130" description="" />
-        <namepart name="Emul. SNES via Snezzyboy" value="Snezzyboy" system="gba" type="Property" behaviour="DontCare" position="131" description="" />
-        <namepart name="Emul. GameBoy via VGB" value="VGB" system="gba" type="Property" behaviour="DontCare" position="132" description="" />
-        <namepart name="Program for Pogoshell tool" value="Pogoshell" system="gba" type="Property" behaviour="DontCare" position="133" description="" />
-        <namepart name="Series number and episode number for videos" value="s##e##" system="gba" type="Property" behaviour="DontCare" position="134" description="" />
-        <namepart name="Multiboot ROM" value="(MB)" system="gba" type="Property" behaviour="DontCare" position="135" description="" />
-        <namepart name="Multiboot game conv. to GBA" value="(MB2GBA)" system="gba" type="Property" behaviour="DontCare" position="136" description="" />
-        <namepart name="E-Reader ROM" value="-e" system="gba" type="Property" behaviour="DontCare" position="137" description="" />
-        <namepart name="Unlicensed multicart with ## NES games" value="+ ## NES" system="gba" type="Property" behaviour="DontCare" position="138" description="" />
-        <namepart name="Nintendo DS slot-2 cartridge dump" value="NDS" system="gba" type="Property" behaviour="DontCare" position="139" description="" />
-        <namepart name="E-Book using GoodBook converter" value="GoodBook" system="gba" type="Property" behaviour="DontCare" position="140" description="" />
-        <namepart name="E-Book using TextReader converter" value="TextReader" system="gba" type="Property" behaviour="DontCare" position="141" description="" />
-        <namepart name="E-Book using PictureBoy converter" value="PictureBoy" system="gba" type="Property" behaviour="DontCare" position="142" description="" />
-        <namepart name="E-Book using ReadBoy converter" value="ReadBoy" system="gba" type="Property" behaviour="DontCare" position="143" description="" />
-        <namepart name="Orig. Cart. with two controller" value="(J-Cart)" system="genesis,megadrive" type="Property" behaviour="DontCare" position="144" description="" />
-        <namepart name="MegaPlay version" value="(MP)" system="genesis,megadrive" type="Property" behaviour="DontCare" position="145" description="" />
-        <namepart name="Sega pack-in game" value="(MD Bundle)" system="genesis,megadrive" type="Property" behaviour="DontCare" position="146" description="" />
-        <namepart name="alternative music" value="(Alt Music),(alt music)" system="genesis,megadrive" type="Property" behaviour="DontCare" position="147" description="" />
+        <namepart name="Unlicensed" value="(Unl)" system="any" type="Property" behaviour="DontCare" position="1" description="" />
+        <namepart name="Albanian" value="(Alb)" system="any" type="Language" behaviour="NeverUse" position="1" description="" />
+        <namepart name="German" value="(Ger),(G)" system="any" type="Language" behaviour="Favorite" position="2" description="" />
+        <namepart name="Asia" value="(As)" system="any" type="Language" behaviour="NeverUse" position="2" description="" />
+        <namepart name="Europe" value="(E)" system="any" type="Language" behaviour="Favorite" position="3" description="" />
+        <namepart name="Hack" value="[h#IR],[hIR+C],[hIR],[h#C],[h#I],[h#IR],[hIR+C],[h#I+#C],[hI#C],[h#+#C],[h#I+C],[hI+#C],[hI+C],[hI],(* Hack),(Hack)" system="any" type="Property" behaviour="DontCare" position="3" description="Something in this ROM is not quite as it should be. Often a hacked ROM simply has a changed header or has been enabled to run in different regions. Other times it could be a release group intro, or just some kind of cheating or funny hack." />
+        <namepart name="Arabic" value="(Ara)" system="any" type="Language" behaviour="NeverUse" position="3" description="" />
+        <namepart name="USA" value="(U),(UE),(E)" system="any" type="Language" behaviour="Favorite" position="4" description="" />
+        <namepart name="Intro removed" value="[hIR00],[hIRff]" system="gba" type="Property" behaviour="DontCare" position="4" description="Something in this ROM is not quite as it should be. Often a hacked ROM simply has a changed header or has been enabled to run in different regions. Other times it could be a release group intro, or just some kind of cheating or funny hack." />
+        <namepart name="Japan" value="(J),(Jap),(1)" system="any" type="Language" behaviour="NeverUse" position="4" description="" />
+        <namepart name="English" value="(Eng),(UK)" system="any" type="Language" behaviour="Favorite" position="5" description="" />
+        <namepart name="OverDump" value="[o*]" system="any" type="Property" behaviour="DontCare" position="5" description="An overdumped ROM image has more data than is actually in the cart. The extra information means nothing and is removed from the true image." />
+        <namepart name="Canadian" value="(C)" system="any" type="Language" behaviour="NeverUse" position="5" description="" />
+        <namepart name="Newer Translation" value="[T+*]" system="any" type="Property" behaviour="Favorite" position="6" description="" />
+        <namepart name="Alternative version" value="[a*]" system="any" type="Property" behaviour="DontCare" position="6" description="This is simply an alternate version of a ROM. Many games have been re-released to fix bugs or even to eliminate Game Genie codes (Yes, Nintendo hates that device)." />
+        <namepart name="Canadian French" value="(Can),(FC)" system="any" type="Language" behaviour="NeverUse" position="6" description="" />
+        <namepart name="Old Translation" value="[T-*]" system="any" type="Property" behaviour="Favorite" position="7" description="" />
+        <namepart name="Hack, only cart name changed" value="[f#C],[f#+#C]" system="any" type="Property" behaviour="DontCare" position="7" description="A fixed game has been altered in some way so that it will run better on a copier or emulator." />
+        <namepart name="Chinese" value="(C),(Ch),(Chi)" system="any" type="Language" behaviour="NeverUse" position="7" description="" />
+        <namepart name="Fixed" value="[f*]" system="any" type="Property" behaviour="DontCare" position="8" description="A fixed game has been altered in some way so that it will run better on a copier or emulator." />
+        <namepart name="Simplified Chinese" value="(ChS),(SChi)" system="any" type="Language" behaviour="NeverUse" position="8" description="" />
+        <namepart name="Multilanguage" value="[m*],(M#)" system="any" type="Language" behaviour="DontCare" position="9" description="" />
+        <namepart name="Traditional Chinese" value="(TChi),(ChT)" system="any" type="Language" behaviour="NeverUse" position="9" description="" />
+        <namepart name="USA/Japan" value="(JU)" system="any" type="Language" behaviour="DontCare" position="10" description="" />
+        <namepart name="Croatia" value="(Cro)" system="any" type="Language" behaviour="NeverUse" position="10" description="" />
+        <namepart name="Europe/Japan" value="(JE)" system="any" type="Language" behaviour="DontCare" position="11" description="" />
+        <namepart name="Danish" value="(Dan)" system="any" type="Language" behaviour="NeverUse" position="11" description="" />
+        <namepart name="USA/Europe/Japan" value="(JUE)" system="any" type="Language" behaviour="DontCare" position="12" description="" />
+        <namepart name="Esperanto" value="(Esp)" system="any" type="Language" behaviour="NeverUse" position="12" description="" />
+        <namepart name="Checksum" value="(###)" system="any" type="Property" behaviour="DontCare" position="13" description="" />
+        <namepart name="Finnish" value="(Fin),(FN)" system="any" type="Language" behaviour="NeverUse" position="13" description="" />
+        <namepart name="Unclassified" value="ZZZ_UNK" system="any" type="Property" behaviour="DontCare" position="14" description="" />
+        <namepart name="Greek" value="(Gre),(Gr)" system="any" type="Language" behaviour="NeverUse" position="14" description="" />
+        <namepart name="Pirate" value="[p*]" system="any" type="Property" behaviour="DontCare" position="15" description="" />
+        <namepart name="Hebrew" value="(Heb)" system="any" type="Language" behaviour="NeverUse" position="15" description="" />
+        <namepart name="Trained" value="[t],[t#],[t#+#C],[t#+C]" system="any" type="Property" behaviour="DontCare" position="16" description="A trainer is special code which executes before the game is begun. It allows you to access cheats from a menu." />
+        <namepart name="Italian" value="(Ita),(I)" system="any" type="Language" behaviour="NeverUse" position="16" description="" />
+        <namepart name="Unknown Year" value="(-)" system="any" type="Property" behaviour="DontCare" position="17" description="" />
+        <namepart name="Korean" value="(Kor)" system="any" type="Language" behaviour="NeverUse" position="17" description="" />
+        <namepart name="ROM Size" value="(??k)" system="any" type="Property" behaviour="DontCare" position="18" description="" />
+        <namepart name="Latvian" value="(Lat)" system="any" type="Language" behaviour="NeverUse" position="18" description="" />
+        <namepart name="Super" value="[S]" system="gb" type="Property" behaviour="DontCare" position="19" description="" />
+        <namepart name="Lithuanian" value="(Lit)" system="any" type="Language" behaviour="NeverUse" position="19" description="" />
+        <namepart name="Bung Fix" value="[BF]" system="gb" type="Property" behaviour="DontCare" position="20" description="Bung released a programmable cartridge compatable with the GameBoy which could hold any data you wished to play. However, many games do not function on Bung v1.0 carts and have to be 'fixed.'" />
+        <namepart name="Polish" value="(Pol)" system="any" type="Language" behaviour="NeverUse" position="20" description="" />
+        <namepart name="Color" value="[C]" system="gb" type="Property" behaviour="DontCare" position="21" description="" />
+        <namepart name="Portuguese" value="(Por)" system="any" type="Language" behaviour="NeverUse" position="21" description="" />
+        <namepart name="BS ROMs" value="(BS)" system="snes" type="Property" behaviour="DontCare" position="22" description="These Japanese ROMs were distributed through a satellite system in Japan known as the Broadcast Satellaview. They were transmitted along with a TV show which was connected to the game in some way. These games were only playable during the show, and thus stop after an hour, and many were timed so that only certain time periods were playable.     " />
+        <namepart name="Romanian / Rumanian" value="(Rum)" system="any" type="Language" behaviour="NeverUse" position="22" description="" />
+        <namepart name="Sufami Turbo" value="(ST)" system="snes" type="Property" behaviour="DontCare" position="23" description="The Sufami Turbo device allowed two GameBoy sized carts to be plugged into the SNES. Certain carts combined into new games much like the Sonic and Knuckles lock-on technology by Sega." />
+        <namepart name="Romanian / Rumanian" value="(Rom)" system="any" type="Language" behaviour="NeverUse" position="23" description="" />
+        <namepart name="Nintendo Power" value="(NP)" system="snes" type="Property" behaviour="DontCare" position="24" description="Nintendo Power has been known to release games only available to its subscribers. Most of these ROMs are Japanese, as this practice occured mainly in Japan.  " />
+        <namepart name="Serbian" value="(Ser)" system="any" type="Language" behaviour="NeverUse" position="24" description="" />
+        <namepart name="USA" value="(4)" system="any" type="Language" behaviour="DontCare" position="25" description="While this code is technically the same as a (U) code, it is a newer header format and represents that the cart will run on USA and Brazil NTSC machines.  " />
+        <namepart name="Spanish" value="(Spa),(S)" system="any" type="Language" behaviour="NeverUse" position="25" description="" />
+        <namepart name="NTSC Only" value="(5),(NTSC)" system="any" type="Property" behaviour="DontCare" position="26" description="" />
+        <namepart name="Swedish" value="(Swe),(Sw)" system="any" type="Language" behaviour="NeverUse" position="26" description="" />
+        <namepart name="PAL Only" value="(8),(PAL)" system="any" type="Property" behaviour="DontCare" position="27" description="" />
+        <namepart name="Thai" value="(Tai)" system="any" type="Language" behaviour="NeverUse" position="27" description="" />
+        <namepart name="non USA" value="(B)" system="genesis,megadrive" type="Language" behaviour="DontCare" position="28" description="This country code indicates that the cart will run on any non US machine. " />
+        <namepart name="Turkish" value="(Tur)" system="any" type="Language" behaviour="NeverUse" position="28" description="" />
+        <namepart name="Checksum" value="[c]" system="any" type="Property" behaviour="DontCare" position="29" description="This code represents a cart with known faulty checksum routines." />
+        <namepart name="Uruguay Spanish" value="(Uru)" system="any" type="Language" behaviour="NeverUse" position="29" description="" />
+        <namepart name="Bad Checksum" value="[x]" system="any" type="Property" behaviour="DontCare" position="30" description="" />
+        <namepart name="Russia" value="(R),(Rus)" system="any" type="Language" behaviour="NeverUse" position="30" description="" />
+        <namepart name="Countries" value="[R-*]" system="any" type="Language" behaviour="DontCare" position="31" description="" />
+        <namepart name="Bad Dump" value="[b*]" system="any" type="Property" behaviour="NeverUse" position="31" description="A bad dump often occurs with an older game or a faulty dumper (bad connection). Another common source of [b] ROMs is a corrupted upload to a release FTP. " />
+        <namepart name="Euro Version" value="(PAL)" system="atari" type="Language" behaviour="DontCare" position="32" description="" />
+        <namepart name="Brazil" value="(B),(Bra)" system="any" type="Language" behaviour="NeverUse" position="32" description="" />
+        <namepart name="Intro hacks" value="[hI??]" system="gba" type="Property" behaviour="DontCare" position="33" description="" />
+        <namepart name="France" value="(F),(Fre)" system="any" type="Language" behaviour="NeverUse" position="33" description="" />
+        <namepart name="ADAM Version" value="(Adam)" system="coleco" type="Property" behaviour="DontCare" position="34" description="" />
+        <namepart name="Norway" value="(Nor),(No)" system="any" type="Language" behaviour="NeverUse" position="34" description="" />
+        <namepart name="Mono Only " value="[M]" system="NeoGeo Pocket" type="Property" behaviour="DontCare" position="35" description="" />
+        <namepart name="Netherlands" value="(NL),(D),(Dut)" system="any" type="Language" behaviour="NeverUse" position="35" description="" />
+        <namepart name="PlayChoice 10" value="(PC10)" system="NES/FC" type="Property" behaviour="DontCare" position="36" description="The PlayChoice 10 was an arcade unit which played exact copies of NES games in an arcade cabinet. The machines had a choice of 10 games to choose from and ran for about 3 minutes on 25 cents." />
+        <namepart name="Versus" value="(VS)" system="NES/FC" type="Property" behaviour="DontCare" position="37" description="The Versus system ran on similar hardware to the PC10 machines, but simply allowed you to play against each other." />
+        <namepart name="FFE Copier fmt" value="[hFFE]" system="nes" type="Property" behaviour="DontCare" position="38" description="" />
+        <namepart name="Australia" value="(A)" system="any" type="Language" behaviour="DontCare" position="39" description="" />
+        <namepart name="World" value="(F)" system="genesis,megadrive" type="Language" behaviour="DontCare" position="40" description="" />
+        <namepart name="World" value="(W)" system="any" type="Language" behaviour="DontCare" position="41" description="" />
+        <namepart name="Hong Kong" value="(HK)" system="any" type="Language" behaviour="DontCare" position="42" description="" />
+        <namepart name="Korea" value="(K)" system="any" type="Language" behaviour="NeverUse" position="43" description="" />
+        <namepart name="Public Domain" value="(PD)" system="any" type="Property" behaviour="DontCare" position="44" description="Public domain, free software and freeware" />
+        <namepart name="Unknown Country" value="(Unk)" system="any" type="Language" behaviour="DontCare" position="45" description="" />
+        <namepart name="Rev" value="(REV##)" system="any" type="Property" behaviour="DontCare" position="46" description="" />
+        <namepart name="Sega-Net game" value="(SN)" system="any" type="Property" behaviour="DontCare" position="47" description="" />
+        <namepart name="Sonic Japanese version 2" value="(REVXB)" system="any" type="Property" behaviour="DontCare" position="48" description="" />
+        <namepart name="Sonic Compilation version" value="(REVSC##)" system="any" type="Property" behaviour="DontCare" position="49" description="" />
+        <namepart name="Prototype" value="(Prototype)" system="any" type="Property" behaviour="DontCare" position="50" description="" />
+        <namepart name="Megadrive 32X" value="(32X)" system="any" type="Property" behaviour="DontCare" position="51" description="" />
+        <namepart name="Eb ??" value="(EB)" system="any" type="Property" behaviour="DontCare" position="52" description="" />
+        <namepart name="Alpha" value="(Alpha),(Alpha #)" system="any" type="Property" behaviour="NeverUse" position="53" description="" />
+        <namepart name="Beta" value="(Beta),(Beta #)" system="any" type="Property" behaviour="NeverUse" position="54" description="" />
+        <namepart name="Sample" value="(Sample)" system="any" type="Property" behaviour="NeverUse" position="55" description="" />
+        <namepart name="Version" value="(V#.#)" system="any" type="Property" behaviour="DontCare" position="56" description="" />
+        <namepart name="Official multicart" value="(Vol #)" system="any" type="Property" behaviour="DontCare" position="57" description="" />
+        <namepart name="GameCube rip" value="(GCN)" system="any" type="Property" behaviour="DontCare" position="58" description="" />
+        <namepart name="Pre-release version" value="(Pre-Release)" system="any" type="Property" behaviour="DontCare" position="59" description="" />
+        <namepart name="Demonstration version available at Kiosks" value="(Kiosk Demo)" system="any" type="Property" behaviour="DontCare" position="60" description="" />
+        <namepart name="Multicart menu, unselectable options" value="(Menu)" system="any" type="Property" behaviour="DontCare" position="61" description="" />
+        <namepart name="Size in MB" value="(##MBit)" system="any" type="Property" behaviour="DontCare" position="62" description="" />
+        <namepart name="Size in KB" value="##k)" system="any" type="Property" behaviour="DontCare" position="63" description="" />
+        <namepart name="Old Version" value="(old)" system="any" type="Property" behaviour="DontCare" position="64" description="" />
+        <namepart name="Cartridge format" value="(Cart)" system="any" type="Property" behaviour="DontCare" position="65" description="" />
+        <namepart name="Dump compilation" value="(Compilation)" system="any" type="Property" behaviour="DontCare" position="66" description="The ROM is a dump of a compilation" />
+        <namepart name="Pirate trad. Chinese game" value="(Ch-Trad)" system="any" type="Language" behaviour="DontCare" position="67" description="" />
+        <namepart name="Pirate simple Chinese game" value="(Ch-Simple)" system="any" type="Property" behaviour="DontCare" position="68" description="" />
+        <namepart name="Removed EEPROM_V124 patched" value="[f_*]" system="gba" type="Property" behaviour="DontCare" position="69" description="" />
+        <namepart name="GBA Video" value="[v]" system="gba" type="Property" behaviour="DontCare" position="70" description="" />
+        <namepart name="E-book ROM" value="[eb]" system="gba" type="Property" behaviour="DontCare" position="71" description="" />
+        <namepart name="E-Book Advance ROM" value="[eba]" system="gba" type="Property" behaviour="DontCare" position="72" description="" />
+        <namepart name="Book Reader Advance ROM" value="[ebb]" system="gba" type="Property" behaviour="DontCare" position="73" description="" />
+        <namepart name="Removed EEPROM_V125" value="[f125]" system="gba" type="Property" behaviour="DontCare" position="74" description="" />
+        <namepart name="Removed EEPROM_V126" value="[f126]" system="gba" type="Property" behaviour="DontCare" position="75" description="" />
+        <namepart name="Chinese GBA for IQue" value="(IQue)" system="gba" type="Language" behaviour="DontCare" position="76" description="" />
+        <namepart name="Emul. Coleco Vision on GBA" value="Coleco on GBA" system="gba" type="Property" behaviour="DontCare" position="77" description="" />
+        <namepart name="Emul. Coleco Vision via Coleco" value="Cologne" system="gba" type="Property" behaviour="DontCare" position="78" description="" />
+        <namepart name="Emul. MasterSystem via DrSMS" value="DrSMS" system="gba" type="Property" behaviour="DontCare" position="79" description="" />
+        <namepart name="Emul. ZX Spectrum via FooN" value="FooN" system="gba" type="Property" behaviour="DontCare" position="80" description="" />
+        <namepart name="Emul. NES via PocketNES" value="PocketNES" system="gba" type="Property" behaviour="DontCare" position="81" description="" />
+        <namepart name="Emul. NES via FC2GBA" value="FC2GBA" system="gba" type="Property" behaviour="DontCare" position="82" description="" />
+        <namepart name="Emul. Game Boy via Goomba" value="Goomba" system="gba" type="Property" behaviour="DontCare" position="83" description="" />
+        <namepart name="Emul. Adventure Game Interpr. via GBAGI" value="GBAGI" system="gba" type="Property" behaviour="DontCare" position="84" description="" />
+        <namepart name="Emul. WonderWan via Swandavance" value="Swanadvance" system="gba" type="Property" behaviour="DontCare" position="85" description="" />
+        <namepart name="Emul. TurboGrafx-16 via PCEAdvance" value="PCEAdvance" system="gba" type="Property" behaviour="DontCare" position="86" description="" />
+        <namepart name="Emul. MasterSystem via PocketSMS" value="PocketSMS" system="gba" type="Property" behaviour="DontCare" position="87" description="" />
+        <namepart name="Emul. SNES via PocketSNES" value="PocketSNES" system="gba" type="Property" behaviour="DontCare" position="88" description="" />
+        <namepart name="Emul. SNES via SNESAdvance" value="SNESAdvance" system="gba" type="Property" behaviour="DontCare" position="89" description="" />
+        <namepart name="Emul. SNES via Snezzyboy" value="Snezzyboy" system="gba" type="Property" behaviour="DontCare" position="90" description="" />
+        <namepart name="Emul. GameBoy via VGB" value="VGB" system="gba" type="Property" behaviour="DontCare" position="91" description="" />
+        <namepart name="Program for Pogoshell tool" value="Pogoshell" system="gba" type="Property" behaviour="DontCare" position="92" description="" />
+        <namepart name="Series number and episode number for videos" value="s##e##" system="gba" type="Property" behaviour="DontCare" position="93" description="" />
+        <namepart name="Multiboot ROM" value="(MB)" system="gba" type="Property" behaviour="DontCare" position="94" description="" />
+        <namepart name="Multiboot game conv. to GBA" value="(MB2GBA)" system="gba" type="Property" behaviour="DontCare" position="95" description="" />
+        <namepart name="E-Reader ROM" value="-e" system="gba" type="Property" behaviour="DontCare" position="96" description="" />
+        <namepart name="Unlicensed multicart with ## NES games" value="+ ## NES" system="gba" type="Property" behaviour="DontCare" position="97" description="" />
+        <namepart name="Nintendo DS slot-2 cartridge dump" value="NDS" system="gba" type="Property" behaviour="DontCare" position="98" description="" />
+        <namepart name="E-Book using GoodBook converter" value="GoodBook" system="gba" type="Property" behaviour="DontCare" position="99" description="" />
+        <namepart name="E-Book using TextReader converter" value="TextReader" system="gba" type="Property" behaviour="DontCare" position="100" description="" />
+        <namepart name="E-Book using PictureBoy converter" value="PictureBoy" system="gba" type="Property" behaviour="DontCare" position="101" description="" />
+        <namepart name="E-Book using ReadBoy converter" value="ReadBoy" system="gba" type="Property" behaviour="DontCare" position="102" description="" />
+        <namepart name="Orig. Cart. with two controller" value="(J-Cart)" system="genesis,megadrive" type="Property" behaviour="DontCare" position="103" description="" />
+        <namepart name="MegaPlay version" value="(MP)" system="genesis,megadrive" type="Property" behaviour="DontCare" position="104" description="" />
+        <namepart name="Sega pack-in game" value="(MD Bundle)" system="genesis,megadrive" type="Property" behaviour="DontCare" position="105" description="" />
+        <namepart name="alternative music" value="(Alt Music),(alt music)" system="genesis,megadrive" type="Property" behaviour="DontCare" position="106" description="" />
       </nameparts>
     </preferences>
   </bestmatch>

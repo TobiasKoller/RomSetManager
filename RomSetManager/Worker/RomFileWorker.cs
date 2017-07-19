@@ -57,6 +57,8 @@ namespace RomSetManager.Worker
                         args.Cancel = true;
                         return;
                     }
+                    
+                    throw new ApplicationException("test");
 
                     var tmpRomFiles = Read(file);
                     romFiles.AddRange(tmpRomFiles);
@@ -88,9 +90,10 @@ namespace RomSetManager.Worker
             {
                 romFile.IsInCompressedFile = false;
                 romFile.FileName = Path.GetFileName(sourceFile);
+                
                 return new List<RomFile> { romFile };
             }
-
+            
             return GetContainingRomFiles(romFile);
         }
 
@@ -130,8 +133,8 @@ namespace RomSetManager.Worker
                     return GZipArchive.Open(sourceFile);
                 case CompressionType.Rar:
                     return RarArchive.Open(sourceFile);
-                //case CompressionType.Tar:
-                //    return TarArchive.Open(sourceFile);
+                case CompressionType.Tar:
+                    return TarArchive.Open(sourceFile);
                 case CompressionType.Zip:
                     return ZipArchive.Open(sourceFile);
             }
@@ -147,14 +150,14 @@ namespace RomSetManager.Worker
             if (ZipArchive.IsZipFile(sourceFile))
                 return CompressionType.Zip;
 
-            if (GZipArchive.IsGZipFile(sourceFile))
+            if (GZipArchive.IsGZipFile(sourceFile) && Path.GetExtension(sourceFile).ToLower()==".gz")
                 return CompressionType.Gzip;
 
             if (RarArchive.IsRarFile(sourceFile))
                 return CompressionType.Rar;
 
-            //if (TarArchive.IsTarFile(sourceFile))
-            //    return CompressionType.Tar;
+            if (TarArchive.IsTarFile(sourceFile) && Path.GetExtension(sourceFile).ToLower() == ".tar")
+                return CompressionType.Tar;
 
             return CompressionType.None;
         }
@@ -249,6 +252,7 @@ namespace RomSetManager.Worker
                         args.Cancel = true;
                         return;
                     }
+                    
 
                     romFile.Export = false; //reset to false because it will set to true below (if match)
                     var parts = GetWipeParts(romFile.System, romFile.FileName, Configuration.BestMatch.Preferences.NameParts);
