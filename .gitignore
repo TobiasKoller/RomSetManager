@@ -6,15 +6,24 @@
 /RomSetManager/obj/Debug
 /RomSetManager/Configuration/bin/Debug
 /RomSetManager/Configuration/obj/Debug
+/RomSetManager/bin/Release
+/RomSetManager/obj/Release
+/RomSetManager/Configuration/bin/Release
+/RomSetManager/Configuration/obj/Release
 *.suo
 *.suo
 /.vs/RomSetManager/v15/.suo
 
 /Configuration/bin/Debug
 /Configuration/obj/Debug
-/Configuration/bin/Debug
+/Configuration/bin/Release
+/Configuration/obj/Release
 /Model/bin/Debug
 /Model/obj/Debug
+/Model/bin/Release
+/Model/obj/Release
 /Testrunner
 /Testrunner/bin/Debug
 /Testrunner/obj/Debug
+/Testrunner/bin/Release
+/Testrunner/obj/Release

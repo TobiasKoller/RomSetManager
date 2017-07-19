@@ -11,7 +11,12 @@ namespace RomSetManager.Services
 
         public ConfigurationService()
         {
-            var configDir = Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "Config");
+            var configDir = "";
+            if (File.Exists(Path.Combine(Directory.GetCurrentDirectory(), "configuration.xml")))
+                configDir = Path.Combine(Directory.GetCurrentDirectory());
+            else
+                configDir = Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "Config");
+
             _configurationReader = new ConfigurationReader(configDir);
             _configurationWriter = new ConfigurationWriter(configDir);
 

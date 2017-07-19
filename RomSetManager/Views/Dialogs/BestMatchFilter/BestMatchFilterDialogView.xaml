@@ -132,7 +132,7 @@
                         </StackPanel>
                     </Button>
                 </StackPanel>
-                <GroupBox Grid.Row="0" Grid.Column="1" Header="Must HAVES!! (These items HAVE to be present in the rom-filename)" Background="Blue">
+                <GroupBox Grid.Row="0" Grid.Column="1" Header="Must HAVES!! (These items HAVE to be present in the rom file-name)" Background="Blue">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"/>
