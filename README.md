@@ -51,7 +51,7 @@ After that you should copy your roms in the correct system-subdir.
 ### 4. Set your preferences
 ![](Images/Readme/bestmatch_2_preferences_dialog.PNG "")
 
-Here you can choose your preferences for finding the correct rom-files if you have multiple of the same game
+Here you can choose your preferences to find the correct rom-files if you have multiple of the same game
 
 #### FAVORITE
 ![](Images/Readme/bestmatch_2_preferences_dialog_favorite.PNG "")
@@ -74,12 +74,33 @@ Add here your items your rom-name HAS TO HAVE. If these items doesn't appear in 
 All roms with these items in their name will get ignored because you never want these.
 In my case I only want english and german-roms because I'm not interessted in other langugages. So I simply add all these langauges here.
 
-####Ignore if only one rom-file of a game exist
+#### Ignore if only one rom-file of a game exist
 ![](Images/Readme/bestmatch_2_preferences_dialog_actionbuttons.PNG "")
 
 For the grids **NEVER USE** and **MUST HAVES** you can set this option. If only one rom-file of a game is available it will igore these settings.
 
-###Moving items
+### Moving items
 ![](Images/Readme/bestmatch_2_preferences_dialog_actionbuttons.PNG "")
 
 you can simply move items from one grid to another by selecting the rows and click the button where these items should go to.
+
+### 4. Read in your rom-directory
+![](Images/Readme/bestmatch_3_actions_readroms_btn.PNG "")
+
+This will read all your rom-files from the defined source-rom-directory. If the files are compressed (7z,zip,rar,..) it will automatically read the files contained in this file.
+
+### 5. Wipe rom-file-names
+![](Images/Readme/bestmatch_3_actions_wipe_btn.PNG "")
+
+This will wipe all rom-files and uses your preferences to find the best match roms.
+
+### 6. Export to destination-directory
+![](Images/Readme/bestmatch_3_actions_export_btn.PNG "")
+
+Exports all wiped rom-files to the destination-directory. It will always create a subdirectory for each system. If the system needs the rom-files compressed it will leave the file compressed.
+
+
+
+## Configuration.xml
+All of your settings are stored in the configuration.xml file.
+
