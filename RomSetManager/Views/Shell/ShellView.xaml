@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Height="800" Width="1000" BorderThickness="1"
         WindowTitleBrush="DimGray"
-        
+        BorderBrush="DimGray"
         WindowStartupLocation="CenterScreen" WindowState="Maximized">
     
     <Grid>
