@@ -1,6 +1,9 @@
 # RomSetManager
 Manage all your retro-roms.
 
+**NOTE**
+If you find any bugs or something that should work another way please open an issue-report.
+
 ## What is it about:
 If you have tons of roms lying around on your computer and these roms are named like
 ```
