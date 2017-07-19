@@ -24,16 +24,15 @@ you probably need a tool like this ;)
 
 [Download latest](https://github.com/TobiasKoller/RomSetManager/releases)
 
-```
-RomSetManager.exe
-```
 ```diff
 - If you have trouble starting the application: right click the zip-file and unblock the file. After that unzip the file.
 ```
-
-### 2. Start
 ![](Images/Readme/unblock.PNG "")
 
+### 2. Start
+```
+RomSetManager.exe
+```
 
 ![](Images/Readme/app.PNG "")
 
