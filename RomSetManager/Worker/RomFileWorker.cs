@@ -58,8 +58,6 @@ namespace RomSetManager.Worker
                         return;
                     }
                     
-                    throw new ApplicationException("test");
-
                     var tmpRomFiles = Read(file);
                     romFiles.AddRange(tmpRomFiles);
                     fileCounter++;
@@ -245,7 +243,7 @@ namespace RomSetManager.Worker
                 var total = romFiles.Count*2; //*2 just because its more to do...just for visualization
                 var currentCounter = 0;
 
-                foreach (var romFile in romFiles)
+                foreach (var romFile in romFiles.Where(r => !string.IsNullOrEmpty(r.FileName)))
                 {
                     if (BackgroundWorker.CancellationPending)
                     {
