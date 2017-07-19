@@ -96,7 +96,13 @@ namespace RomSetManager.Views.BestMatch
 
 
             var retropieDir = @"\\RETROPIE\roms";
-            
+
+            if (!Directory.Exists(retropieDir))
+            {
+                MessageBox.Show("The directory [" + retropieDir + "] doesn't exist.", "Directory not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             var target = new DirectoryInfo(SourceDirectory);
             foreach (var directory in new DirectoryInfo(retropieDir).GetDirectories())
             {
@@ -107,10 +113,18 @@ namespace RomSetManager.Views.BestMatch
 
         #region 3. Actions
 
+        public bool CanReadSourceRomFiles => Directory.Exists(SourceDirectory);
         public void ReadSourceRomFiles()
         {
             var config = _configurationService.GetConfiguration();
             var romFileWorker = new RomFileWorker(config);
+
+            if (!Directory.Exists(SourceDirectory))
+            {
+                MessageBox.Show("The directory ["+SourceDirectory+"] doesn't exist.", "Directory not found", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return;
+            }
+
             _currentBackgroundWorker = romFileWorker.BackgroundWorker;
 
             romFileWorker.BackgroundWorker.ProgressChanged += (sender, args) =>
@@ -166,6 +180,13 @@ namespace RomSetManager.Views.BestMatch
         {
             var config = _configurationService.GetConfiguration();
             var romFileWorker = new RomFileWorker(config);
+
+            if (!Directory.Exists(DestinationDirectory))
+            {
+                MessageBox.Show("The directory [" + DestinationDirectory + "] doesn't exist.", "Directory not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             _currentBackgroundWorker = romFileWorker.BackgroundWorker;
 
             romFileWorker.BackgroundWorker.ProgressChanged += (sender, args) =>

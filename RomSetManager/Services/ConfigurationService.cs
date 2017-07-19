@@ -1,4 +1,5 @@
 using System.IO;
+using System.Windows.Forms;
 using Configuration;
 
 namespace RomSetManager.Services

@@ -29,7 +29,11 @@ namespace RomSetManager.Views.BestMatch
         public string SourceDirectory
         {
             get => _sourceDirectory;
-            set { SetPropertyAndNotify(ref _sourceDirectory, value, () => SourceDirectory); }
+            set
+            {
+                SetPropertyAndNotify(ref _sourceDirectory, value, () => SourceDirectory);
+                NotifyOfPropertyChange(()=>CanReadSourceRomFiles);
+            }
         }
         public string DestinationDirectory
         {

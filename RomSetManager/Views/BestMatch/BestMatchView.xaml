@@ -103,9 +103,6 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                
-
-
                 <StackPanel Orientation="Horizontal" Grid.Row="0">
                     <Button x:Name="ReadSourceRomFiles" Style="{StaticResource ActionBtn}">1. Read Source-Rom Directory</Button>
                     <Button x:Name="WipeFileNames" Style="{StaticResource ActionBtn}">2. Test Wipe File-Names</Button>
