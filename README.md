@@ -21,7 +21,7 @@ and you just want the best of these games filtered in an clean directory,
 
 you probably need a tool like this ;)
 
-##Future plans (what I would like to add when I find some time)
+## Future plans (what I would like to add when I find some time)
 - Predefined List for BestOf, Categories (like lightguns, jump'n'run): Export roms by these list with one click
 - Filter old-room-theme files (videos) for only games you realy have to save space on your raspberrypi.
 - ...feel free to post what you like
