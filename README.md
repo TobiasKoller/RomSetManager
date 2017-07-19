@@ -3,8 +3,6 @@
 # RomSetManager
 Manage all your retro-roms.
 
-Readme under development...will get finished soon.
-
 ## What is it about:
 If you have tons of roms lying around on your computer and these roms are named like
 ```
@@ -26,7 +24,7 @@ you probably need a tool like this ;)
 
 ### 1. Download the latest version of this tool an extract it to any directory
 
-link: TODO 2017/07/19
+[Download latest](https://github.com/TobiasKoller/RomSetManager/releases)
 
 ### 2. Start
 ```
