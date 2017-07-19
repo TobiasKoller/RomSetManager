@@ -1,5 +1,3 @@
-
-
 # RomSetManager
 Manage all your retro-roms.
 
@@ -30,10 +28,17 @@ you probably need a tool like this ;)
 ```
 RomSetManager.exe
 ```
-![1](Images/Readme/app.PNG "")
+```diff
+- If you have trouble starting the application: right click the zip-file and unblock the file. After that unzip the file.
+```
+
+![](Images/Readme/unblock.PNG "")
+
+
+![](Images/Readme/app.PNG "")
 
 ### 3. Choose the directories
-![2](Images/Readme/bestmatch_1_directories.PNG "")
+![](Images/Readme/bestmatch_1_directories.PNG "")
 
 #### Source Rom Directory
 Choose your Directory where all your roms are located. This directory has to have the same structure as retropie like
