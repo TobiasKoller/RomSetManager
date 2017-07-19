@@ -1,7 +1,8 @@
-
-
 # RomSetManager
 Manage all your retro-roms.
+
+**NOTE**
+If you find any bugs or something that should work another way please open an issue-report.
 
 ## What is it about:
 If you have tons of roms lying around on your computer and these roms are named like
@@ -19,6 +20,10 @@ and you just want the best of these games filtered in an clean directory,
 
 you probably need a tool like this ;)
 
+## Future plans (what I would like to add when I find some time)
+- Predefined List for BestOf, Categories (like lightguns, jump'n'run): Export roms by these list with one click
+- Filter old-room-theme files (videos) for only games you really have to save space on your raspberrypi.
+- ...feel free to post what you like
 
 ## How to use it:
 
@@ -26,14 +31,20 @@ you probably need a tool like this ;)
 
 [Download latest](https://github.com/TobiasKoller/RomSetManager/releases)
 
+```diff
+- If you have trouble starting the application: right click the zip-file and unblock the file. After that unzip the file.
+```
+![](Images/Readme/unblock.PNG "")
+
 ### 2. Start
 ```
 RomSetManager.exe
 ```
-![1](Images/Readme/app.PNG "")
+
+![](Images/Readme/app.PNG "")
 
 ### 3. Choose the directories
-![2](Images/Readme/bestmatch_1_directories.PNG "")
+![](Images/Readme/bestmatch_1_directories.PNG "")
 
 #### Source Rom Directory
 Choose your Directory where all your roms are located. This directory has to have the same structure as retropie like
