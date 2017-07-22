@@ -113,3 +113,15 @@ Exports all wiped rom-files to the destination-directory. It will always create 
 ## Configuration.xml
 All of your settings are stored in the configuration.xml file.
 
+## Used Libraries
+
+| Package | Name | Description | License |
+| --- | --- | --- | --- |
+| [github.com/Caliburn-Micro/Caliburn.Micro](https://github.com/Caliburn-Micro/Caliburn.Micro) | Caliburn.Micro | MVVM Framework | MIT |
+| [github.com/adamhathcock/sharpcompress](https://github.com/adamhathcock/sharpcompress) | SharpCompress | Handling compressed files | MIT |
+| [github.com/charri/Font-Awesome-WPF](https://github.com/charri/Font-Awesome-WPF) | FontAwesome.WPF | Awesome fonts | MIT |
+| [github.com/MahApps/MahApps.Metro](https://github.com/MahApps/MahApps.Metro) | MahApps.Metro | Ui-Theming | MIT |
+
+
+
+
