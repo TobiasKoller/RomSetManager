@@ -14,6 +14,7 @@ using Microsoft.Win32;
 using Model;
 using RomSetManager.Views.Dialogs;
 using RomSetManager.Views.Dialogs.BestMatchFilter;
+using RomSetManager.Views.Dialogs.SystemSelection;
 using RomSetManager.Worker;
 using Configuration = Model.Configuration;
 using MessageBox = System.Windows.Forms.MessageBox;
@@ -113,7 +114,30 @@ namespace RomSetManager.Views.BestMatch
 
         #region 3. Actions
 
-        public bool CanReadSourceRomFiles => Directory.Exists(SourceDirectory);
+        public bool CanChooseSystems => Directory.Exists(SourceDirectory);
+        public void ChooseSystems()
+        {
+            dynamic settings = new ExpandoObject();
+            settings.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            settings.ResizeMode = ResizeMode.CanResizeWithGrip;
+            settings.MinWidth = 450;
+            settings.Title = "Choose your Systems";
+
+            var vm = Container.GetInstance<SystemSelectionDialogViewModel>();
+            vm.SetSystems(Systems);
+
+            if (_windowManager.ShowDialog(vm, null, settings))
+            {
+            }
+
+            var config = _configurationService.GetConfiguration();
+            config.Systems = Systems;
+            _configurationService.UpdateConfiguration(config);
+
+            NotifyOfPropertyChange(() => CanReadSourceRomFiles);
+        }
+
+        public bool CanReadSourceRomFiles => Directory.Exists(SourceDirectory) && Systems.Any(s => s.IsSelected);
         public void ReadSourceRomFiles()
         {
             var config = _configurationService.GetConfiguration();
@@ -174,7 +198,7 @@ namespace RomSetManager.Views.BestMatch
             romFileWorker.WipeFileNames(RomFiles.ToList());
                 
         }
-
+        
         public bool CanExport => RomFiles.Any(r => r.Export);
         public void Export()
         {
@@ -201,6 +225,8 @@ namespace RomSetManager.Views.BestMatch
             ShowLoadScreen("Exporting wiped roms to ["+DestinationDirectory+"]...");
             romFileWorker.Export(RomFiles.Where(r => r.Export).ToList());
         }
+
+       
 
         #endregion
 

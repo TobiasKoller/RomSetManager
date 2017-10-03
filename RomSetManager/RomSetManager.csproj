@@ -82,6 +82,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="IoC\SimpleContainerEx.cs" />
+    <Compile Include="Views\Dialogs\SystemSelection\SystemSelectionDialogView.xaml.cs">
+      <DependentUpon>SystemSelectionDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\SystemSelection\SystemSelectionDialogViewCommand.cs" />
+    <Compile Include="Views\Dialogs\SystemSelection\SystemSelectionDialogViewModel.cs" />
     <Compile Include="Views\LoadableViewModelBase.cs" />
     <Compile Include="Worker\RomFileWorker.cs" />
     <Compile Include="Services\ConfigurationService.cs" />
@@ -154,6 +159,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\Dialogs\BestMatchFilter\BestMatchFilterDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dialogs\SystemSelection\SystemSelectionDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

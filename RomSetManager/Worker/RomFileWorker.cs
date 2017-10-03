@@ -38,11 +38,26 @@ namespace RomSetManager.Worker
             BackgroundWorker.ReportProgress(progress);
         }
 
+        private List<string> GetFilesOfSelectedSystems()
+        {
+            var selectedSystems = Configuration.Systems.Where(s => s.IsSelected).ToList();
+
+            var files = new List<string>();
+            foreach(var system in selectedSystems)
+            {
+                var directory = Path.Combine(Configuration.BestMatch.RomSourceDirectory, system.Name);
+                var currentFiles = Directory.GetFiles(directory, "*.*", SearchOption.AllDirectories);
+                files.AddRange(currentFiles);
+            }
+
+            return files;
+        }
+
         public void GetRomFiles()
         {
             BackgroundWorker.DoWork += (sender, args) =>
             {
-                var files = Directory.GetFiles(Configuration.BestMatch.RomSourceDirectory, "*.*", SearchOption.AllDirectories);
+                var files = GetFilesOfSelectedSystems();
                 var ext = new List<string> { "log", "txt" };
 
                 var romFiles = new List<RomFile>();

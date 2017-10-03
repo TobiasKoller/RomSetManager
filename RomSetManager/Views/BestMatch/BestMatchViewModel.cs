@@ -24,6 +24,8 @@ namespace RomSetManager.Views.BestMatch
         public ObservableCollection<NamePart> FilterLanguages { get; set; }
         public ObservableCollection<RomFile> RomFiles { get; set; }
         private ConfigurationService _configurationService;
+        private IWindowManager _windowManager;
+        public List<Model.System> Systems;
 
         private string _sourceDirectory, _destinationDirectory="";
         public string SourceDirectory
@@ -32,7 +34,8 @@ namespace RomSetManager.Views.BestMatch
             set
             {
                 SetPropertyAndNotify(ref _sourceDirectory, value, () => SourceDirectory);
-                NotifyOfPropertyChange(()=>CanReadSourceRomFiles);
+                NotifyOfPropertyChange(()=>CanChooseSystems);
+                NotifyOfPropertyChange(() => CanReadSourceRomFiles);
             }
         }
         public string DestinationDirectory
@@ -42,13 +45,14 @@ namespace RomSetManager.Views.BestMatch
         }
 
         public BestMatchViewModel(string name, SimpleContainerEx container, IEventAggregator eventAggregator, INavigationServiceProvider navigationServiceProvider, 
-            IServiceProvider serviceProvider) : 
+            IServiceProvider serviceProvider, IWindowManager windowManager) : 
             base(name, container, eventAggregator, navigationServiceProvider, Constants.FRAME_MAIN, serviceProvider)
         {
             FilterLanguages = new ObservableCollection<NamePart>();
             RomFiles = new ObservableCollection<RomFile>();
-            
+
             _configurationService = ServiceProvider.ConfigurationService;
+            _windowManager = windowManager;
 
             Init();
         }
@@ -57,7 +61,8 @@ namespace RomSetManager.Views.BestMatch
         {
             var service = ServiceProvider.ConfigurationService;
             var config = service.GetConfiguration();
-            
+
+            Systems = config.Systems;
             SourceDirectory = config.BestMatch.RomSourceDirectory;
             DestinationDirectory = config.BestMatch.RomDestinationDirectory;
         }

@@ -104,9 +104,10 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Orientation="Horizontal" Grid.Row="0">
-                    <Button x:Name="ReadSourceRomFiles" Style="{StaticResource ActionBtn}">1. Read Source-Rom Directory</Button>
-                    <Button x:Name="WipeFileNames" Style="{StaticResource ActionBtn}">2. Test Wipe File-Names</Button>
-                    <Button x:Name="Export" Style="{StaticResource ActionBtn}">3. Export</Button>
+                    <Button x:Name="ChooseSystems" Style="{StaticResource ActionBtn}">1. Choose Systems</Button>
+                    <Button x:Name="ReadSourceRomFiles" Style="{StaticResource ActionBtn}">2. Read Source-Rom Directory</Button>
+                    <Button x:Name="WipeFileNames" Style="{StaticResource ActionBtn}">3. Test Wipe File-Names</Button>
+                    <Button x:Name="Export" Style="{StaticResource ActionBtn}">4. Export</Button>
                 </StackPanel>
                 <DataGrid x:Name="BestMatchGrid" ItemsSource="{Binding Source={StaticResource RomFilesCvs}}" AutoGenerateColumns="False" Grid.Row="1"
                           CanUserAddRows="false" CanUserDeleteRows="false" CanUserResizeRows="false" CanUserSortColumns="true" VirtualizingStackPanel.IsVirtualizing="True">

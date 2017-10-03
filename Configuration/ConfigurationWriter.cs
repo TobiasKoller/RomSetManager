@@ -88,6 +88,7 @@ namespace Configuration
 
                 writer.WriteAttributeString("name",configurationSystem.Name);
                 writer.WriteAttributeString("keep_compressed", configurationSystem.KeepCompressed.ToString());
+                writer.WriteAttributeString("is_selected", configurationSystem.IsSelected.ToString());
 
                 writer.WriteEndElement(); //system
             }

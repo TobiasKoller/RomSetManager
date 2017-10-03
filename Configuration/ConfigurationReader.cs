@@ -79,11 +79,13 @@ namespace Configuration
             {
                 var name = GetAttributeAsString(systemsNode, "name");
                 var keepCompression = GetAttributeAsBool(systemsNode, "keep_compressed");
+                var isSelected = GetAttributeAsBool(systemsNode, "is_selected");
 
                 var system = new Model.System
                 {
                     Name = name,
-                    KeepCompressed = keepCompression
+                    KeepCompressed = keepCompression,
+                    IsSelected = isSelected
                 };
 
                 _configuration.Systems.Add(system);
