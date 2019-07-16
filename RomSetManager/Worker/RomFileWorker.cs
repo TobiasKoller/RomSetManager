@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 using Model;
 using Model.Constants;
 using SharpCompress.Archives;
@@ -43,9 +44,12 @@ namespace RomSetManager.Worker
             var selectedSystems = Configuration.Systems.Where(s => s.IsSelected).ToList();
 
             var files = new List<string>();
-            foreach(var system in selectedSystems)
+            foreach (var system in selectedSystems)
             {
                 var directory = Path.Combine(Configuration.BestMatch.RomSourceDirectory, system.Name);
+                if (!Directory.Exists(directory))
+                    continue;
+
                 var currentFiles = Directory.GetFiles(directory, "*.*", SearchOption.AllDirectories);
                 files.AddRange(currentFiles);
             }
@@ -72,7 +76,7 @@ namespace RomSetManager.Worker
                         args.Cancel = true;
                         return;
                     }
-                    
+
                     var tmpRomFiles = Read(file);
                     romFiles.AddRange(tmpRomFiles);
                     fileCounter++;
@@ -103,10 +107,10 @@ namespace RomSetManager.Worker
             {
                 romFile.IsInCompressedFile = false;
                 romFile.FileName = Path.GetFileName(sourceFile);
-                
+
                 return new List<RomFile> { romFile };
             }
-            
+
             return GetContainingRomFiles(romFile);
         }
 
@@ -163,7 +167,7 @@ namespace RomSetManager.Worker
             if (ZipArchive.IsZipFile(sourceFile))
                 return CompressionType.Zip;
 
-            if (GZipArchive.IsGZipFile(sourceFile) && Path.GetExtension(sourceFile).ToLower()==".gz")
+            if (GZipArchive.IsGZipFile(sourceFile) && Path.GetExtension(sourceFile).ToLower() == ".gz")
                 return CompressionType.Gzip;
 
             if (RarArchive.IsRarFile(sourceFile))
@@ -200,7 +204,7 @@ namespace RomSetManager.Worker
                 return true;
 
             var systems = configSystem.ToLower().Split(',').ToList(); //f.e. genesis,megadrive
-          
+
             return systems.Any(s => s == system.ToLower());
 
         }
@@ -208,7 +212,7 @@ namespace RomSetManager.Worker
         private List<string> GetWipeParts(string system, string fileName, List<NamePart> nameParts)
         {
             var list = new List<string>();
-           
+
             foreach (var part in nameParts.Where(n => IsValidSystem(system, n.System)))
             {
                 var parts = part.Value.Split(','); //split if multiple values
@@ -216,8 +220,8 @@ namespace RomSetManager.Worker
                 {
                     if (tmpPart.Contains("*")) //need to use regex to compare
                     {
-                        var wildcardPattern = tmpPart.Replace("(", @"\(").Replace(")", @"\)").Replace("[", @"\[").Replace("]", @"\]").Replace("*", ".*").Replace("+",@"\+").Replace("-", @"\-");
-                       
+                        var wildcardPattern = tmpPart.Replace("(", @"\(").Replace(")", @"\)").Replace("[", @"\[").Replace("]", @"\]").Replace("*", ".*").Replace("+", @"\+").Replace("-", @"\-");
+
                         foreach (Match match in Regex.Matches(fileName, wildcardPattern))
                         {
                             list.Add(match.Value);
@@ -255,7 +259,7 @@ namespace RomSetManager.Worker
         {
             BackgroundWorker.DoWork += (sender, args) =>
             {
-                var total = romFiles.Count*2; //*2 just because its more to do...just for visualization
+                var total = romFiles.Count * 2; //*2 just because its more to do...just for visualization
                 var currentCounter = 0;
 
                 foreach (var romFile in romFiles.Where(r => !string.IsNullOrEmpty(r.FileName)))
@@ -265,7 +269,7 @@ namespace RomSetManager.Worker
                         args.Cancel = true;
                         return;
                     }
-                    
+
 
                     romFile.Export = false; //reset to false because it will set to true below (if match)
                     var parts = GetWipeParts(romFile.System, romFile.FileName, Configuration.BestMatch.Preferences.NameParts);
@@ -296,7 +300,7 @@ namespace RomSetManager.Worker
                 }
                 args.Result = romFiles;
             };
-                
+
             BackgroundWorker.RunWorkerAsync();
 
             //return romFiles;
@@ -332,7 +336,7 @@ namespace RomSetManager.Worker
                 //get rom-count with identical names to current rom
                 //var romNameCount = 2;//wipedRomFiles.Count(c => Path.GetFileNameWithoutExtension(c.FileNameWiped) ==Path.GetFileNameWithoutExtension(romFile.FileNameWiped));
 
-                if ((romNameCount!=1 || !Configuration.BestMatch.Preferences.IgnoreMustHaveForOneRom) && //if option is set to true and only one rom is available for this game we ignore this check
+                if ((romNameCount != 1 || !Configuration.BestMatch.Preferences.IgnoreMustHaveForOneRom) && //if option is set to true and only one rom is available for this game we ignore this check
                     mustHaves.Count > 0 && !GetWipeParts(romFile.System, romFile.FileName, mustHaves).Any()) //no mustHave-part found? continue with next rom.
                     continue;
 
@@ -342,11 +346,11 @@ namespace RomSetManager.Worker
 
                 filtered.Add(romFile);
             }
-            
+
             var filteredFileNames = filtered.Select(f => Path.GetFileNameWithoutExtension(f.FileNameWiped)).Distinct().OrderBy(f => f).ToList();
             var counter = (wipedRomFiles.Count / 2); //because we know that all roms are init already. and we set the progressbar-total to rom.Count*2 we will reduce it here again.
             var total = counter + filteredFileNames.Count;
-            
+
             foreach (var fileName in filteredFileNames)
             {
                 if (BackgroundWorker.CancellationPending)
@@ -361,8 +365,8 @@ namespace RomSetManager.Worker
                 {
                     foreach (var namePart in favorite)
                     {
-                        roms.RemoveAll(r => !GetWipeParts(r.System, r.FileName, new List<NamePart> {namePart}).Any());
-                        if (roms.Count ==0)
+                        roms.RemoveAll(r => !GetWipeParts(r.System, r.FileName, new List<NamePart> { namePart }).Any());
+                        if (roms.Count == 0)
                             break;
 
                         prevRoms = roms.ToList();
@@ -371,7 +375,7 @@ namespace RomSetManager.Worker
                     }
                 }
                 counter++;
-                NotifyProgress(counter,total);
+                NotifyProgress(counter, total);
                 var winner = prevRoms.First();
                 winner.Export = true;
             }
@@ -400,7 +404,7 @@ namespace RomSetManager.Worker
                     try
                     {
                         counter++;
-                        NotifyProgress(counter,total);
+                        NotifyProgress(counter, total);
 
                         var dir = Path.Combine(outDir, romFile.System);
                         if (!Directory.Exists(dir))
@@ -434,7 +438,7 @@ namespace RomSetManager.Worker
             };
 
             BackgroundWorker.RunWorkerAsync();
-                
+
         }
     }
 }
